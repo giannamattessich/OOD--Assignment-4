@@ -18,11 +18,61 @@ public class Pixel {
    * @param blue  represents blue channel.
    */
   public Pixel(int red, int green, int blue) throws IllegalArgumentException {
-    if ((red < 0) || (green < 0) || (blue < 0)) {
-      throw new IllegalArgumentException("Pixel components cannot be negative.");
+    if (((red < 0) || (red > 255)) || ((green < 0) || (green > 255)) ||
+            ((blue < 0) || (blue > 255))) {
+      throw new IllegalArgumentException("Pixel components cannot be negative or" +
+              " above 8-bit depth.");
     }
     this.red = red;
     this.green = green;
+    this.blue = blue;
+  }
+
+  /**
+   * Method to get red component of pixel.
+   * @return red component.
+   */
+  public int getRed() {
+    return this.red;
+  }
+
+  /**
+   * Method to get green component of pixel.
+   * @return green component.
+   */
+  public int getGreen() {
+    return this.green;
+  }
+
+  /**
+   * Method to get blue component of pixel.
+   * @return blue component.
+   */
+  public int getBlue() {
+    return this.blue;
+  }
+
+  /**
+   * Method to set red component of pixel
+   * @param red represents new red component value.
+   */
+  public void setRed(int red) {
+    this.red = red;
+  }
+
+  /**
+   * Method to set green component of pixel
+   * @param green represents new red component value.
+   */
+  public void setGreen(int green) {
+    this.green = green;
+  }
+
+  /**
+   * Method to set blue component of pixel
+   * @param blue represents new blue component value.
+   */
+  public void setBlue(int blue) {
     this.blue = blue;
   }
 
@@ -61,7 +111,7 @@ public class Pixel {
    * @return pixel intensity.
    */
   public int getPixelIntensity() {
-    return (int) Math.floor(((this.red + this.green + this.blue) / 3));
+    return ((this.red + this.green + this.blue) / 3);
   }
 
   /**
@@ -73,69 +123,6 @@ public class Pixel {
   public int getPixelLuma() {
     return (int) ((0.2126 * (this.red)) + (0.7152 * (this.green)) +
             (0.0722 * (this.blue)));
-  }
-
-  /**
-   * Method which visualizes the red component of a pixel by creating a corresponding
-   * greyscale pixel.
-   *
-   * @return corresponding greyscale pixel.
-   */
-  public Pixel visualizeRedChannel() {
-
-    return new Pixel(this.red, this.red, this.red);
-  }
-
-  /**
-   * Method which visualizes the red component of a pixel by creating a corresponding
-   * greyscale pixel.
-   *
-   * @return corresponding greyscale pixel.
-   */
-  public Pixel visualizeGreenChannel() {
-
-    return new Pixel(this.green, this.green, this.green);
-  }
-
-  /**
-   * Method which visualizes the red component of a pixel by creating a corresponding
-   * greyscale pixel.
-   *
-   * @return corresponding greyscale pixel.
-   */
-  public Pixel visualizeBlueChannel() {
-
-    return new Pixel(this.blue, this.blue, this.blue);
-  }
-
-  /**
-   * Method which visualizes the luminance of a pixel by creating a corresponding
-   * greyscale pixel.
-   *
-   * @return corresponding greyscale pixel.
-   */
-  public Pixel visualizeLuma() {
-    return new Pixel(this.getPixelLuma(), this.getPixelLuma(), this.getPixelLuma());
-  }
-
-  /**
-   * Method which visualizes the intensity of a pixel by creating a corresponding
-   * greyscale pixel.
-   *
-   * @return corresponding greyscale pixel.
-   */
-  public Pixel visualizeIntensity() {
-    return new Pixel(this.getPixelIntensity(), this.getPixelIntensity(), this.getPixelIntensity());
-  }
-
-  /**
-   * Method which visualizes the value of a pixel by creating a corresponding
-   * greyscale pixel.
-   *
-   * @return corresponding greyscale pixel.
-   */
-  public Pixel visualizeValue() {
-    return new Pixel(this.getPixelValue(), this.getPixelValue(), this.getPixelValue());
   }
 
   /**

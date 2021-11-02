@@ -1,9 +1,12 @@
 package controller;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 import model.Image;
+import utils.ImageUtil;
 import view.ImageView;
 
 /**
@@ -15,6 +18,8 @@ public class ImageControllerImpl implements ImageController {
   Readable inputStream;
   ImageView view;
   Image model;
+  Map<String, Image> allImageNames;
+
 
   /**
    * Constructor for image program controller.
@@ -32,48 +37,86 @@ public class ImageControllerImpl implements ImageController {
     this.inputStream = inputStream;
     this.view = view;
     this.model = model;
+    HashMap<String, Image> allImageNames = new HashMap<String, Image>();
   }
 
   @Override
-  public void promptImageCommand() throws IllegalStateException {
+  public void promptImageCommand() {
     Scanner sc = new Scanner(this.inputStream);
-    String imageName;
-    String imagePath;
-    String destImageName;
-    boolean quit = false;
-
     welcomeMessage();
-    while (! quit) {
+
+    while (sc.hasNext()) {
+      try {
         this.view.renderMessage("Type Command:");
-        String userCommand = sc.next();
-        switch(userCommand) {
-          case "load":
-            String loadFilePath = sc.next();
-            String loadFileName = sc.next();
-            this.model.loadImage(loadFilePath, loadFileName);
-            break;
-          case "save":
-            String saveFilePath = sc.next();
-            String saveFileName = sc.next();
-            this.model.saveImage(saveFilePath, saveFileName);
-            break;
-          case "red-component":
-            imageName = sc.next();
-            destImageName = sc.next();
-            this.model.red
-            this.model.saveImage()
-
-          case "green-component":
-          case "blue-component":
-          case "value-component":
-          case "luma-component":
-          case "intensity-component":
-          case "horizontal-flip":
-          case "vertical-flip":
-          case "brighten":
-          case "darken":
-        }
-
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+      String userCommand = sc.next();
+      switch (userCommand) {
+        case "load":
+          String loadFilePath = sc.next();
+          Image loadImage = ImageUtil.readPPM(loadFilePath);
+          String loadFileName = sc.next();
+          promptLoad(loadFilePath, loadFileName, loadImage);
+          break;
+        case "save":
+          String saveFilePath = sc.next();
+          String saveFileName = sc.next();
+          promptSave(saveFilePath, saveFileName);
+          break;
+        case "red-component":
+          String rImageName = sc.next();
+          String rDestFile = sc.next();
+          createRedGreyscale(rImageName, rDestFile);
+          break;
+        case "green-component":
+          String gImageName = sc.next();
+          String gDestFile = sc.next();
+          createGreenGreyscale(gImageName, gDestFile);
+          break;
+        case "blue-component":
+          String bImageName = sc.next();
+          String bDestFile = sc.next();
+          createBlueGreyscale(bImageName, bDestFile);
+          break;
+        case "value-component":
+          String vImageName = sc.next();
+          String vDestFile = sc.next();
+          createValueGreyscale(vImageName, vDestFile);
+          break;
+        case "luma-component":
+          String lImageName = sc.next();
+          String lDestFile = sc.next();
+          createLumaGreyscale(lImageName, lDestFile);
+          break;
+        case "intensity-component":
+          String iImageName = sc.next();
+          String iDestFile = sc.next();
+          createIntensityGreyscale(iImageName, iDestFile);
+          break;
+        case "horizontal-flip":
+          String hfImageName = sc.next();
+          String hfDestFile = sc.next();
+          createHorizontalFlip(hfImageName, hfDestFile);
+          break;
+        case "vertical-flip":
+          String vfImageName = sc.next();
+          String vfDestFile = sc.next();
+          createVerticalFlip(vfImageName, vfDestFile);
+          break;
+        case "brighten":
+          int brInc = sc.nextInt();
+          String brImageName = sc.next();
+          String brDestFile = sc.next();
+          createBrighten(brInc, brImageName, brDestFile);
+          break;
+        default:
+          try {
+            view.renderMessage("This command could not be understood.");
+          } catch (IOException e) {
+            e.printStackTrace();
+          }
+      }
     }
   }
 
@@ -114,68 +157,241 @@ public class ImageControllerImpl implements ImageController {
       e.printStackTrace();
     }
   }
-  /*
 
-  public void makeSpreadSheet() throws IllegalStateException {
-    Scanner sc = new Scanner(this.readable);
-    boolean quit = false;
-    int row;
-    int col;
-    double value;
+  /**
+   * Prompts load command.
+   *
+   * @param filePath is filepath of image.
+   * @param fileName is filename of image.
+   * @param i        is image to be loaded.
+   */
+  private void promptLoad(String filePath, String fileName, Image i) {
+    try {
+      i.setFileName(fileName);
+      allImageNames.put(fileName, i);
+      this.view.renderMessage("File " + fileName + "loaded!");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
 
-    //print the welcome message
-    this.welcomeMessage();
-
-    while (!quit) { //continue until the user quits
-      writeMessage("Type instruction: "); //prompt for the instruction name
-      String userInstruction = sc.next(); //take an instruction name
-      switch (userInstruction) {
-        case "assign-value": //assign a value to a cell
-          try {
-            row = getRowNum(sc.next()); //get in the row string
-            col = sc.nextInt(); //get in the column number, starting with 1
-            sheet.set(row, col - 1, sc.nextDouble()); //use the spreadsheet
-          } catch (IllegalArgumentException e) {
-            writeMessage("Error: " + e.getMessage() + System.lineSeparator());
-          }
-          break;
-        case "bulk-assign":
-          try {
-            row = getRowNum(sc.next());
-            col = sc.nextInt();
-            int row2 = getRowNum(sc.next());
-            int col2 = sc.nextInt();
-            value = sc.nextDouble();
-            sheet.setBulkAssign(row, col, row2, col2, value);
-          } catch (IllegalArgumentException e) {
-            writeMessage("Error: " + e.getMessage() + System.lineSeparator());
-          }
-          break;
-        case "print-value": //print a value from the cell
-          try {
-            row = getRowNum(sc.next()); //get the row string
-            col = sc.nextInt(); //get the column number, starting with 1
-            writeMessage("Value: " + this.sheet.get(row, col - 1) + System.lineSeparator());
-          } catch (IllegalArgumentException e) {
-            writeMessage("Error: " + e.getMessage() + System.lineSeparator());
-          }
-          break;
-        case "menu": //print the menu of supported instructions
-          welcomeMessage();
-          break;
-        case "q": //quit
-        case "quit": //quit
-          quit = true;
-          break;
-        default: //error due to unrecognized instruction
-          writeMessage("Undefined instruction: " + userInstruction + System.lineSeparator());
+  /**
+   * Prompts save command.
+   *
+   * @param filePath filepath of image to be saved.
+   * @param fileName file name of image to be saved.
+   */
+  private void promptSave(String filePath, String fileName) {
+    for (Map.Entry<String, Image> item : allImageNames.entrySet()) {
+      try {
+        if (item.getKey().equals(fileName)) {
+          ImageUtil.writePPMFile(filePath, item.getValue());
+          item.getValue().setFilePath(filePath);
+        } else {
+          this.view.renderMessage("Image has not yet been loaded or created.");
+        }
+      } catch (IOException e) {
+        e.printStackTrace();
       }
     }
+  }
 
-    //after the user has quit, print farewell message
-    this.farewellMessage();
+  /**
+   * Creates greyscale image.
+   *
+   * @param imageName is image name to be converted.
+   * @param destName  is new image produced after operation is applied.
+   */
+  private void createRedGreyscale(String imageName, String destName) {
+    try {
+      for (Map.Entry<String, Image> item : allImageNames.entrySet()) {
+        if (imageName.equals(item.getKey())) {
+          Image redImage = this.model.createRedGreyScale(item.getValue());
+          allImageNames.put(destName, redImage);
+          redImage.setFileName(destName);
+        } else {
+          this.view.renderMessage("Specified image name does not exist.");
+        }
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
 
-  }*/
+  /**
+   * Creates greyscale image.
+   *
+   * @param imageName is image name to be converted.
+   * @param destName  is new image produced after operation is applied.
+   */
+  private void createGreenGreyscale(String imageName, String destName) {
+    try {
+      for (Map.Entry<String, Image> item : allImageNames.entrySet()) {
+        if (imageName.equals(item.getKey())) {
+          Image greenImage = this.model.createGreenGreyScale(item.getValue());
+          allImageNames.put(destName, greenImage);
+          greenImage.setFileName(destName);
+        } else {
+          this.view.renderMessage("Specified image name does not exist.");
+        }
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
 
+  /**
+   * Creates greyscale image.
+   *
+   * @param imageName is image name to be converted.
+   * @param destName  is new image produced after operation is applied.
+   */
+  private void createBlueGreyscale(String imageName, String destName) {
+    try {
+      for (Map.Entry<String, Image> item : allImageNames.entrySet()) {
+        if (imageName.equals(item.getKey())) {
+          Image blueImage = this.model.createBlueGreyScale(item.getValue());
+          allImageNames.put(destName, blueImage);
+          blueImage.setFileName(destName);
+        } else {
+          this.view.renderMessage("Specified image name does not exist.");
+        }
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
 
+  /**
+   * Creates greyscale image.
+   *
+   * @param imageName is image name to be converted.
+   * @param destName  is new image produced after operation is applied.
+   */
+  private void createValueGreyscale(String imageName, String destName) {
+    try {
+      for (Map.Entry<String, Image> item : allImageNames.entrySet()) {
+        if (imageName.equals(item.getKey())) {
+          Image valueImage = this.model.createValueGreyScale(item.getValue());
+          allImageNames.put(destName, valueImage);
+          valueImage.setFileName(destName);
+        } else {
+          this.view.renderMessage("Specified image name does not exist.");
+        }
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  /**
+   * Creates greyscale image.
+   *
+   * @param imageName is image name to be converted.
+   * @param destName  is new image produced after operation is applied.
+   */
+  private void createLumaGreyscale(String imageName, String destName) {
+    try {
+      for (Map.Entry<String, Image> item : allImageNames.entrySet()) {
+        if (imageName.equals(item.getKey())) {
+          Image lumaImage = this.model.createLumaGreyScale(item.getValue());
+          allImageNames.put(destName, lumaImage);
+          lumaImage.setFileName(destName);
+        } else {
+          this.view.renderMessage("Specified image name does not exist.");
+        }
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  /**
+   * Creates greyscale image.
+   *
+   * @param imageName is image name to be converted.
+   * @param destName  is new image produced after operation is applied.
+   */
+  private void createIntensityGreyscale(String imageName, String destName) {
+    try {
+      for (Map.Entry<String, Image> item : allImageNames.entrySet()) {
+        if (imageName.equals(item.getKey())) {
+          Image intensityImage = this.model.createIntensityGreyScale(item.getValue());
+          allImageNames.put(destName, intensityImage);
+          intensityImage.setFileName(destName);
+        } else {
+          this.view.renderMessage("Specified image name does not exist.");
+        }
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  /**
+   * Creates horizontally flipped image.
+   *
+   * @param imageName is image name to be converted.
+   * @param destName  is new image produced after operation is applied.
+   */
+  private void createHorizontalFlip(String imageName, String destName) {
+    try {
+      for (Map.Entry<String, Image> item : allImageNames.entrySet()) {
+        if (imageName.equals(item.getKey())) {
+          Image hfImage = this.model.horizontalFlipImage(item.getValue());
+          hfImage.setFileName(destName);
+          allImageNames.put(destName, hfImage);
+        } else {
+          this.view.renderMessage("Specified image name does not exist.");
+        }
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  /**
+   * Creates vertically flipped image.
+   *
+   * @param imageName is image name to be converted.
+   * @param destName  is new image produced after operation is applied.
+   */
+  private void createVerticalFlip(String imageName, String destName) {
+    try {
+      for (Map.Entry<String, Image> item : allImageNames.entrySet()) {
+        if (imageName.equals(item.getKey())) {
+          Image vfImage = this.model.verticalFlipImage(item.getValue());
+          vfImage.setFileName(destName);
+          allImageNames.put(destName, vfImage);
+        } else {
+          this.view.renderMessage("Specified image name does not exist.");
+        }
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  /**
+   * Creates brightened image.
+   *
+   * @param increment is increment to be brightened by.
+   * @param imageName is image name to be converted.
+   * @param destName  is new image produced after operation is applied.
+   */
+  private void createBrighten(int increment, String imageName, String destName) {
+    try {
+      for (Map.Entry<String, Image> item : allImageNames.entrySet()) {
+        if (imageName.equals(item.getKey())) {
+          Image bImage = this.model.brightenImage(item.getValue(), increment);
+          bImage.setFileName(destName);
+          allImageNames.put(destName, bImage);
+        } else {
+          this.view.renderMessage("Specified image name does not exist.");
+        }
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
 }

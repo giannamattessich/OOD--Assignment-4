@@ -1,12 +1,9 @@
 
--write controller method
--write load and save methods in
 -test methods in all classes:
 ImageTest
 PixelTest
 ImageView
 Controller Test (test using ImageMock)
--Generate class diagram (use diagrams -> java classes)
 -Create ReadMe(IN UTILS)
 At least one example PPM image (different from any of the ones provided to you in this assignment),
 its greyscaled, brighter, darker and flipped (one of each type) versions, named suitably in a

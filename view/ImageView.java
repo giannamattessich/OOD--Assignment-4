@@ -16,7 +16,7 @@ public interface ImageView {
   public void renderMessage(String message) throws IOException;
 
   /**
-   * Outputs the options for this ImageProcessor program to the user.
+   * Outputs the options for this model.ImageProcessor program to the user.
    */
   public void showOptions() throws IOException;
 }
