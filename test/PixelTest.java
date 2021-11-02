@@ -43,7 +43,7 @@ public class PixelTest {
     Pixel test2 = new Pixel(218, 254, 199);
     Pixel test3 = new Pixel(0,0,0);
     assertEquals(60, test.getPixelIntensity());
-    assertEquals(224, test2.getPixelIntensity());
+    assertEquals(223, test2.getPixelIntensity());
     assertEquals(0, test3.getPixelIntensity());
   }
 

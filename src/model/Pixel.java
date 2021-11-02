@@ -192,9 +192,8 @@ public class Pixel {
    * set to 0.
    *
    * @param amount represents the amount by which the pixel is to be brightened.
-   * @return brightened pixel.
    */
-  public Pixel brighten(int amount) {
+  public void brighten(int amount) {
     int newRed = this.red + amount;
     int newGreen = this.green + amount;
     int newBlue = this.blue + amount;
@@ -216,7 +215,9 @@ public class Pixel {
     if (newBlue < 0) {
       newBlue = 0;
     }
-    return new Pixel(newRed, newGreen, newBlue);
+    this.red = newRed;
+    this.green = newGreen;
+    this.blue = newBlue;
   }
 }
 

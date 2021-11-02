@@ -1,6 +1,6 @@
 package model;
 
-public class ImageMock extends AbstractImage {
+public class ImageMock extends ImageImpl {
 
   /**
    * Constructor for an abstract image.

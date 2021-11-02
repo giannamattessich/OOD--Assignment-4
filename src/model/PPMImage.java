@@ -8,7 +8,7 @@ import java.util.Scanner;
  * Class to represent an Image constructed from a PPM file, which lists
  * the values associated with pixels of an image.
  */
-public class PPMImage extends AbstractImage {
+public class PPMImage extends ImageImpl {
 
   /**
    * Constructor for a PPMImage.

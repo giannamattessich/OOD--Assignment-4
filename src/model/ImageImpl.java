@@ -1,9 +1,11 @@
 package model;
 
+import org.junit.Test;
+
 /**
  * Abstract class to represent images of different file types.
  */
-public abstract class AbstractImage implements Image {
+public class ImageImpl implements Image {
   protected String fileName;
   protected int width;
   protected int height;
@@ -13,10 +15,21 @@ public abstract class AbstractImage implements Image {
   /**
    * Constructor for an abstract image.
    *
-   * @param filePath is the file provided by user.
+   * @param filename is the name of the file to henceforth represent.
    */
-  public AbstractImage(String fileName) {
+  public ImageImpl(String fileName) {
     this.fileName = fileName;
+  }
+
+  /**
+   * Constructor to set everything.
+   */
+  public ImageImpl(String fileName, int width, int height, int maxColorVal, Pixel[][] imagePixels) {
+    this.fileName = fileName;
+    this.width = width;
+    this.height = height;
+    this.maxColorVal = maxColorVal;
+    this.imagePixels = imagePixels;
   }
 
   public Pixel getPixelAt(int row, int col) {

@@ -6,6 +6,7 @@ import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.io.FileInputStream;
 import model.Image;
+import model.ImageImpl;
 import model.PPMImage;
 import model.Pixel;
 
@@ -60,8 +61,7 @@ public class ImageUtil {
         imagePixels[i][j] = new Pixel(r, g, b);
       }
     }
-    Image i = new PPMImage(filepath);
-    i.setImagePixels(imagePixels);
+    Image i = new ImageImpl(filepath, width, height, maxValue, imagePixels);
     return i;
   }
 
