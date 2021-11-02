@@ -102,4 +102,72 @@ public class ImageTest {
     assertEquals(68, image.getPixelAt(0, 0).getBlue());
   }
 
+  /**
+   * Test the darken method which darkens the image a certain amount.
+   */
+  @Test
+  public void testDarken() {
+    image.darken(10);
+    assertEquals(48, image.getPixelAt(0, 0).getBlue());
+  }
+
+  /**
+   * Test the redComponent method.
+   */
+  @Test
+  public void testRedComponent() {
+    image.redComponent();
+    //blue has now been set to red
+    assertEquals(101, image.getPixelAt(0, 0).getBlue());
+  }
+
+  /**
+   * Test the greenComponent method.
+   */
+  @Test
+  public void testGreenComponent() {
+    image.greenComponent();
+    //blue has now been set to green
+    assertEquals(90, image.getPixelAt(0, 0).getBlue());
+  }
+
+  /**
+   * Test the blueComponent method.
+   */
+  @Test
+  public void testBlueComponent() {
+    image.blueComponent();
+    //red has now been set to blue
+    assertEquals(58, image.getPixelAt(0, 0).getRed());
+  }
+
+  /**
+   * Test the lumaComponent method.
+   */
+  @Test
+  public void testLumaComponent() {
+    image.lumaComponent();
+    //red has now been set to luma
+    assertEquals(90, image.getPixelAt(0, 0).getRed());
+  }
+
+  /**
+   * Test the intensityComponent method.
+   */
+  @Test
+  public void testIntensityComponent() {
+    image.intensityComponent();
+    //red has now been set to intensity
+    assertEquals(83, image.getPixelAt(0, 0).getRed());
+  }
+
+  /**
+   * Test the valueComponent method.
+   */
+  @Test
+  public void testValueComponent() {
+    image.valueComponent();
+    //red has now been set to value
+    assertEquals(101, image.getPixelAt(0, 0).getRed());
+  }
 }
