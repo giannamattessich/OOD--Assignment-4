@@ -1,0 +1,29 @@
+
+-write controller method
+-write load and save methods in
+-test methods in all classes:
+ImageTest
+PixelTest
+ImageView
+Controller Test (test using ImageMock)
+-Generate class diagram (use diagrams -> java classes)
+-Create ReadMe(IN UTILS)
+At least one example PPM image (different from any of the ones provided to you in this assignment),
+its greyscaled, brighter, darker and flipped (one of each type) versions, named suitably in a
+res/ folder
+
+A text README file explaining your design. Your README file should give the graders an overview
+of what the purposes are for every class, interface, etc. that you include in your submission,
+so that they can quickly get a high-level overview of your code. It does not replace the need
+for proper Javadoc!
+
+A script of commands that your program will accept, that will load at least one file, run some
+operations on it and save results in other files. Include in your README file instructions on how
+ we can run this script using your program (e.g. ''provide this file as a command line argument",
+  ''type this script when the program runs", etc.).
+
+A citation for the source of your image (in the README file). It is your responsibility to ensure
+that you are legally allowed to use any images, and your citation should be detailed enough for us
+to access the image and read its terms of usage. If an image is your own photograph or other
+ original work, specify that you own it and are authorizing its use in the project. Please do
+  not use images provided or shown in this assignment as your examples.
