@@ -4,8 +4,7 @@ package model;
  * Abstract class to represent images of different file types.
  */
 public abstract class AbstractImage implements Image {
-  protected final String filePath;
-  protected final String fileName;
+  protected String fileName;
   protected int width;
   protected int height;
   protected int maxColorVal;
@@ -16,28 +15,35 @@ public abstract class AbstractImage implements Image {
    *
    * @param filePath is the file provided by user.
    */
-  public AbstractImage(String filePath, String fileName) {
-    this.filePath = filePath;
+  public AbstractImage(String fileName) {
     this.fileName = fileName;
-    initImage(this.filePath);
   }
 
-  /**
-   * Method which initializes image width, height, max color value(determined by its
-   * bit-depth), and its pixels.
-   *
-   * @param filePath is the file provided by user.
-   */
-  protected abstract void initImage(String filePath);
-
-  //will change
-  public abstract void loadImage(String filePath, Image fileName);
-
-  //will change
-  public abstract void saveImage(String filePath, String fileName);
-
   public Pixel getPixelAt(int row, int col) {
-   return this.imagePixels[row][col];
+    return this.imagePixels[row][col];
+  }
+
+  public int getHeight() {
+    return this.height;
+  }
+
+  public void setFileName(String fileName) {
+    this.fileName = fileName;
+  }
+
+  @Override
+  public Pixel[][] getImagePixels() {
+    return this.imagePixels;
+  }
+
+  @Override
+  public void setImagePixels(Pixel[][] pixels) {
+    this.imagePixels = pixels;
+  }
+
+  @Override
+  public void setPixelAt(int row, int col, Pixel pixel) {
+    this.imagePixels[row][col] = pixel;
   }
 
   /**
@@ -99,7 +105,6 @@ public abstract class AbstractImage implements Image {
    * Visualize the red channel of the image in greyscale.
    */
   public void redComponent() {
-    Image output;
     for (int i = 0; i < this.height; i++) {
       for (int j = 0; j < this.width; j++) {
         this.imagePixels[i][j] = this.imagePixels[i][j].visualizeRedChannel();
@@ -161,7 +166,17 @@ public abstract class AbstractImage implements Image {
       }
     }
   }
-  public void getFileName() {
-    this.fileName
+
+  /**
+   * Get the name of the image.
+   */
+  public String getFileName() {
+    return fileName;
   }
+
+  @Override
+  public int getWidth() {
+    return this.width;
+  }
+
 }

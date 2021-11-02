@@ -28,6 +28,66 @@ public class Pixel {
     this.blue = blue;
   }
 
+   /**
+   * Method which visualizes the red component of a pixel by creating a
+   * corresponding greyscale pixel.
+   *
+   * @return corresponding greyscale pixel.
+   */
+  public Pixel visualizeRedChannel() {
+    return new Pixel(this.red, this.red, this.red);
+  }
+
+  /**
+   * Method which visualizes the red component of a pixel by creating a
+   * corresponding greyscale pixel.
+   *
+   * @return corresponding greyscale pixel.
+   */
+  public Pixel visualizeGreenChannel() {
+    return new Pixel(this.green, this.green, this.green);
+  }
+
+  /**
+   * Method which visualizes the red component of a pixel by creating a
+   * corresponding greyscale pixel.
+   *
+   * @return corresponding greyscale pixel.
+   */
+  public Pixel visualizeBlueChannel() {
+    return new Pixel(this.blue, this.blue, this.blue);
+  }
+
+  /**
+   * Method which visualizes the luminance of a pixel by creating a corresponding
+   * greyscale pixel.
+   * 
+   * @return corresponding greyscale pixel.
+   */
+  public Pixel visualizeLuma() {
+    return new Pixel(this.getPixelLuma(), this.getPixelLuma(), this.getPixelLuma());
+  }
+
+  /**
+   * Method which visualizes the intensity of a pixel by creating a corresponding
+   * greyscale pixel.
+   * 
+   * @return corresponding greyscale pixel.
+   */
+  public Pixel visualizeIntensity() {
+    return new Pixel(this.getPixelIntensity(), this.getPixelIntensity(), this.getPixelIntensity());
+  }
+
+  /**
+   * Method which visualizes the value of a pixel by creating a corresponding
+   * greyscale pixel.
+   * 
+   * @return corresponding greyscale pixel.
+   */
+  public Pixel visualizeValue() {
+    return new Pixel(this.getPixelValue(), this.getPixelValue(), this.getPixelValue());
+  }
+
   /**
    * Method to get red component of pixel.
    * @return red component.
