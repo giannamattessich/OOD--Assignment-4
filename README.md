@@ -22,19 +22,17 @@ To enable insight into the behvaiour of the MVC components, we used mocks for th
 
 To get started, look in the `utils` folder. There you will see a file called `userScript` of parameters that must be added to command line arguments in order to run every command as requested in the specs.
 
-  
-
 List of commands and how to use them:
 
- - load <image-path>  <image-name> -> load image
- - save <image-path>  <image-name> -> save image
- - red-component <image-name>  <dest-image-name> -> produce image that visualizes red component of pixels using greyscale.
- - green-component <image-name>  <dest-image-name> -> produces image that visualizes green component of pixels using greyscale.
- - blue-component <image-name>  <dest-image-name> -> produces image that visualizes blue component of pixels using greyscale.
- - value-component <image-name>  <dest-image-name> -> produce image that visualizes value component of pixels using greyscale.
- - luma-component <image-name>  <dest-image-name> -> produces image that visualizes luma component of pixels using greyscale.
- - intensity-component <image-name>  <dest-image-name> -> produces image that visualizes intensity component of pixels using greyscale.
- - horizontal-flip <image-name>  <dest-image-name> -> flips image horizontally
- - vertical-flip <image-name>  <dest-image-name> -> flips image vertically
- - brighten <increment>  <image-name>  <dest-image-name> -> brightens image by specified increment(increment is positive).
- - darken <increment>  <image-name>  <dest-image-name> -> darkens image by specified increment(increment is positive).
+ - load *image-path*  *image-name* -> load image
+ - save *image-path*  *image-name* -> save image
+ - red-component *image-name*  *dest-image-name* -> produce image that visualizes red component of pixels using greyscale.
+ - green-component *image-name*  *dest-image-name* -> produces image that visualizes green component of pixels using greyscale.
+ - blue-component *image-name*  *dest-image-name* -> produces image that visualizes blue component of pixels using greyscale.
+ - value-component *image-name*  *dest-image-name* -> produce image that visualizes value component of pixels using greyscale.
+ - luma-component *image-name*  *dest-image-name* -> produces image that visualizes luma component of pixels using greyscale.
+ - intensity-component *image-name*  *dest-image-name* -> produces image that visualizes intensity component of pixels using greyscale.
+ - horizontal-flip *image-name*  *dest-image-name* -> flips image horizontally
+ - vertical-flip *image-name*  *dest-image-name* -> flips image vertically
+ - brighten *increment*  *image-name*  *dest-image-name* -> brightens image by specified increment(increment is positive).
+ - darken *increment*  *image-name*  *dest-image-name* -> darkens image by specified increment(increment is positive).
