@@ -28,66 +28,6 @@ public class Pixel {
     this.blue = blue;
   }
 
-   /**
-   * Method which visualizes the red component of a pixel by creating a
-   * corresponding greyscale pixel.
-   *
-   * @return corresponding greyscale pixel.
-   */
-  public Pixel visualizeRedChannel() {
-    return new Pixel(this.red, this.red, this.red);
-  }
-
-  /**
-   * Method which visualizes the red component of a pixel by creating a
-   * corresponding greyscale pixel.
-   *
-   * @return corresponding greyscale pixel.
-   */
-  public Pixel visualizeGreenChannel() {
-    return new Pixel(this.green, this.green, this.green);
-  }
-
-  /**
-   * Method which visualizes the red component of a pixel by creating a
-   * corresponding greyscale pixel.
-   *
-   * @return corresponding greyscale pixel.
-   */
-  public Pixel visualizeBlueChannel() {
-    return new Pixel(this.blue, this.blue, this.blue);
-  }
-
-  /**
-   * Method which visualizes the luminance of a pixel by creating a corresponding
-   * greyscale pixel.
-   * 
-   * @return corresponding greyscale pixel.
-   */
-  public Pixel visualizeLuma() {
-    return new Pixel(this.getPixelLuma(), this.getPixelLuma(), this.getPixelLuma());
-  }
-
-  /**
-   * Method which visualizes the intensity of a pixel by creating a corresponding
-   * greyscale pixel.
-   * 
-   * @return corresponding greyscale pixel.
-   */
-  public Pixel visualizeIntensity() {
-    return new Pixel(this.getPixelIntensity(), this.getPixelIntensity(), this.getPixelIntensity());
-  }
-
-  /**
-   * Method which visualizes the value of a pixel by creating a corresponding
-   * greyscale pixel.
-   * 
-   * @return corresponding greyscale pixel.
-   */
-  public Pixel visualizeValue() {
-    return new Pixel(this.getPixelValue(), this.getPixelValue(), this.getPixelValue());
-  }
-
   /**
    * Method to get red component of pixel.
    * @return red component.
@@ -115,24 +55,39 @@ public class Pixel {
   /**
    * Method to set red component of pixel
    * @param red represents new red component value.
+   * @throws IllegalArgumentException if new red value is less than 0 or greater than 255.
    */
-  public void setRed(int red) {
+  public void setRed(int red) throws IllegalArgumentException {
+    if ((red < 0) || (red > 255)) {
+      throw new IllegalArgumentException("Pixel component cannot be negative or above" +
+              " max bit depth.");
+    }
     this.red = red;
   }
 
   /**
    * Method to set green component of pixel
    * @param green represents new red component value.
+   * @throws IllegalArgumentException if new green value is less than 0 or greater than 255.
    */
-  public void setGreen(int green) {
+  public void setGreen(int green) throws IllegalArgumentException {
+    if ((green < 0) || (green > 255)) {
+      throw new IllegalArgumentException("Pixel component cannot be negative or above" +
+              " max bit depth.");
+    }
     this.green = green;
   }
 
   /**
    * Method to set blue component of pixel
    * @param blue represents new blue component value.
+   * @throws IllegalArgumentException if new blue value is less than 0 or greater than 255.
    */
-  public void setBlue(int blue) {
+  public void setBlue(int blue) throws IllegalArgumentException {
+    if ((green < 0) || (green > 255)) {
+      throw new IllegalArgumentException("Pixel component cannot be negative or above" +
+              " max bit depth.");
+    }
     this.blue = blue;
   }
 
@@ -192,8 +147,9 @@ public class Pixel {
    * set to 0.
    *
    * @param amount represents the amount by which the pixel is to be brightened.
+   * @return brightened pixel.
    */
-  public void brighten(int amount) {
+  public Pixel brighten(int amount) {
     int newRed = this.red + amount;
     int newGreen = this.green + amount;
     int newBlue = this.blue + amount;
@@ -215,9 +171,7 @@ public class Pixel {
     if (newBlue < 0) {
       newBlue = 0;
     }
-    this.red = newRed;
-    this.green = newGreen;
-    this.blue = newBlue;
+    return new Pixel(newRed, newGreen, newBlue);
   }
 }
 

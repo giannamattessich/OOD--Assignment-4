@@ -2,22 +2,22 @@ package utils;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.io.FileInputStream;
+
 import model.Image;
-import model.ImageImpl;
+import model.ImageModel;
 import model.Pixel;
 
-
 /**
- * This class contains utility methods to read a PPM image from file and simply print its
- * contents. Feel free to change this method as required.
+ * This class contains utility methods to read and write images.
  */
 public class ImageUtil {
 
   /**
-   * Read an image file in the PPM format and print the colors.
+   * Read an image file in the PPM format and creates new Image model to represent PPM.
    *
    * @param filepath the path of the file.
    */
@@ -32,7 +32,7 @@ public class ImageUtil {
     StringBuilder builder = new StringBuilder();
     //read the file line by line, and populate a string.
     // This will throw away any comment lines
-    while (sc.hasNextLine()) {
+    while (Objects.requireNonNull(sc).hasNextLine()) {
       String s = sc.nextLine();
       if (s.charAt(0) != '#') {
         builder.append(s).append(System.lineSeparator());
@@ -45,11 +45,11 @@ public class ImageUtil {
       System.out.println("Invalid PPM file: plain RAW file should begin with P3");
     }
     int width = sc.nextInt();
-    System.out.println("Width of image: " + width);
+    System.out.println("Width of Image: " + width);
     int height = sc.nextInt();
-    System.out.println("Height of image: " + height);
+    System.out.println("Height of Image: " + height);
     int maxValue = sc.nextInt();
-    System.out.println("Maximum value of a color in this file (usually 255): " + maxValue);
+    System.out.println("MaxVal of Image: " + maxValue);
 
     Pixel[][] imagePixels = new Pixel[height][width];
     for (int i = 0; i < height; i++) {
@@ -60,46 +60,41 @@ public class ImageUtil {
         imagePixels[i][j] = new Pixel(r, g, b);
       }
     }
-    Image i = new ImageImpl(filepath, width, height, maxValue, imagePixels);
-    return i;
-  }
-
-  //demo main
-  public static void main(String[] args) {
-    String filename;
-
-    if (args.length > 0) {
-      filename = args[0];
-    } else {
-      filename = "sample.ppm";
-    }
-
-    ImageUtil.readPPM(filename);
+    return new ImageModel(imagePixels);
   }
 
   /**
    * Writes the ppm files based the given image and the filename to write to.
    *
-   * @param filePath     the file name.
-   * @param changedImage the image to be written as ppm.
-   * @throws IOException exception from the view.
+   * @param filePath the file name.
+   * @param img      the image to be written as ppm.
+   * @throws IllegalArgumentException if provided filepath does not have ppm file extension.
    */
-  public static void writePPMFile(String filePath, Image changedImage) throws IOException {
-    FileWriter file = new FileWriter(filePath);
-    file.append("P3");
-    file.append("\n");
-    file.append(String.valueOf(changedImage.getWidth())).append(" ")
-            .append(String.valueOf(changedImage.getHeight())).append("\n");
-    file.append("255" + "\n");
-    for (int i = 0; i < changedImage.getHeight(); i++) {
-      for (int j = 0; j < changedImage.getWidth(); j++) {
-        file.append("").append(String.valueOf(changedImage.getPixelAt(i, j)
-                .getRed())).append("\n");
-        file.append("").append(String.valueOf(changedImage.getPixelAt(i, j)
-                .getGreen())).append("\n");
-        file.append("").append(String.valueOf(changedImage.getPixelAt(i, j)
-                .getBlue())).append("\n");
+  public static void writePPMFile(String filePath, Image img)
+          throws IllegalArgumentException {
+    if (filePath.endsWith("ppm")) {
+      try {
+        FileWriter file = new FileWriter(filePath);
+        file.append("P3");
+        file.append("\n");
+        file.append(String.valueOf(img.getWidth())).append(" ")
+                .append(String.valueOf(img.getHeight())).append("\n");
+        file.append("255" + "\n");
+        for (int i = 0; i < img.getHeight(); i++) {
+          for (int j = 0; j < img.getWidth(); j++) {
+            file.append("").append(String.valueOf(img.getPixelAt(i, j)
+                    .getRed())).append("\n");
+            file.append("").append(String.valueOf(img.getPixelAt(i, j)
+                    .getGreen())).append("\n");
+            file.append("").append(String.valueOf(img.getPixelAt(i, j)
+                    .getBlue())).append("\n");
+          }
+        }
+      } catch (IOException e) {
+        e.printStackTrace();
       }
+    } else {
+      throw new IllegalArgumentException("FilePath must end in .ppm");
     }
   }
 }

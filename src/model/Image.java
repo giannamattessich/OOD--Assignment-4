@@ -1,25 +1,12 @@
 package model;
 
+import model.ImageTransformations.ImageProcessor;
+
 /**
  * Interface that represents an Image Object. Upon construction of an Image
- * object, the image will load. Users can call command-line arguments to perform
- * operations on an image.
+ * object, the image will load.
  */
 public interface Image {
-
-  /**
-   * Sets filename of image.
-   *
-   * @param fileName is name of image.
-   */
-  public void setFileName(String fileName);
-
-  /**
-   * Gets filename of an image.
-   *
-   * @return filename of image.
-   */
-  public String getFileName();
 
   /**
    * Returns pixel at given position.
@@ -39,7 +26,7 @@ public interface Image {
    * @param green component of pixel.
    * @param blue  component of pixel.
    */
-  void setPixelAt(int row, int col, Pixel pixel);
+  void setPixelAt(int row, int col, int red, int green, int blue);
 
   /**
    * Gets Pixels of image.
@@ -47,11 +34,6 @@ public interface Image {
    * @return pixels of image;
    */
   Pixel[][] getImagePixels();
-  
-  /**
-   * Sets pixels of image.
-   */
-  void setImagePixels(Pixel[][] pixels);
 
   /**
    * Gets width of image.
@@ -68,64 +50,19 @@ public interface Image {
   int getHeight();
 
   /**
-   * Method to create greyscale image to visualize red component of pixel.
+   * Applies specified ImageProcessor transformation on this image and returns new image
+   * with transformation applied.
    *
+   * @param cmd transformation to be applied.
+   * @return image with transformation applied.
    */
-  void redComponent();
+  public Image changeImage(ImageProcessor cmd);
 
-  /**
-   * Method to create greyscale image to visualize green component of pixel.
-   *
-   */
-  void greenComponent();
+  @Override
+  public boolean equals(Object obj);
 
-  /**
-   * Method to create greyscale image to visualize blue component of pixel.
-   *
-   */
-  void blueComponent();
+  @Override
+  public int hashCode();
 
-  /**
-   * Method to create greyscale image to visualize value of pixel.
-   *
-   */
-  void valueComponent();
-
-  /**
-   * Method to create greyscale image to visualize luma of pixel.
-   *
-   */
-  void lumaComponent();
-
-  /**
-   * Method to create greyscale image to visualize intensity of pixel.
-   *
-   */
-  void intensityComponent();
-
-  /**
-   * Method to create brightened image.
-   *
-   * @param constant increment by which to brighten image.
-   */
-  void brighten(int constant);
-
-  /**
-   * Method to create darkened image.
-   *
-   * @param constant increment by which to darken image.
-   */
-  void darken(int constant);
-
-  /**
-   * Method to flip an image vertically.
-   * 
-   */
-  void flipVertical();
-
-  /**
-   * Method to flip an image horizontally.
-   * 
-   */
-  void flipHorizontal();
 }
+
