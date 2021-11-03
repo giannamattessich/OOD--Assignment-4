@@ -1,8 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 import model.Image;
@@ -37,6 +35,9 @@ public class ImageControllerImpl implements ImageController {
     this.model = model;
   }
 
+  /**
+   * Brings up the image program.
+   */
   @Override
   public void promptImageCommand() {
     Scanner sc = new Scanner(this.inputStream);

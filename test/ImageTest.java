@@ -1,13 +1,10 @@
 import org.junit.Test;
 
 import model.Image;
-import model.ImageImpl;
 import model.Pixel;
 import utils.ImageUtil;
 
 import static org.junit.Assert.assertEquals;
-
-import java.util.Arrays;
 
 public class ImageTest {
   Image image = ImageUtil.readPPM("/Users/oliversilverstein/Documents/GitHub/OOD--Assignment-4/src/images/Koala.ppm");

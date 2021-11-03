@@ -50,6 +50,10 @@ public class ImageTextView implements ImageView {
     }
   }
 
+  /**
+   * Prints the options that are available to the user.
+   * @return a String of the options that are available to the user.
+   */
   private static String printUserOptions() {
     return "";
   }

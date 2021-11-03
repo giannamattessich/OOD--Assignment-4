@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * This class is used to mock the image.
+ */
 public class ImageMock extends ImageImpl {
 
   public StringBuilder log = new StringBuilder();
@@ -13,6 +16,10 @@ public class ImageMock extends ImageImpl {
     super(fileName);
   }
 
+  /**
+   * Instantiate a mock from an image.
+   * @param image is the image to be instantiated.
+   */
   public ImageMock(Image image) {
     super(image);
   }

@@ -3,8 +3,6 @@ import static org.junit.Assert.assertEquals;
 import java.io.StringReader;
 import java.io.StringWriter;
 
-import javax.swing.text.html.ImageView;
-
 import org.junit.Test;
 
 import controller.ImageController;
@@ -14,6 +12,9 @@ import model.ImageMock;
 import utils.ImageUtil;
 import view.ImageTextView;
 
+/**
+ * This class tests the ImageControllerImpl class.
+ */
 public class ControllerTest {
   /**
    * Test method for redComponent.

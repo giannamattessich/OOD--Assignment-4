@@ -1,9 +1,5 @@
 package model;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-
 /**
  * Class to represent an Image constructed from a PPM file, which lists
  * the values associated with pixels of an image.

@@ -1,7 +1,5 @@
 package model;
 
-import org.junit.Test;
-
 /**
  * Abstract class to represent images of different file types.
  */
@@ -189,11 +187,16 @@ public class ImageImpl implements Image {
 
   /**
    * Get the name of the image.
+   * @return the name of the image.
    */
   public String getFileName() {
     return fileName;
   }
 
+  /**
+   * Get the width of the image.
+   * @return the width of the image.
+   */
   @Override
   public int getWidth() {
     return this.width;

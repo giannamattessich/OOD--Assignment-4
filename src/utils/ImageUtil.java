@@ -7,7 +7,6 @@ import java.io.FileNotFoundException;
 import java.io.FileInputStream;
 import model.Image;
 import model.ImageImpl;
-import model.PPMImage;
 import model.Pixel;
 
 

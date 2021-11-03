@@ -10,6 +10,9 @@ import static org.junit.Assert.assertNotEquals;
  */
 public class PixelTest {
 
+  /**
+   * Tests the constructor.
+   */
   @Test
   public void testConstructPixel() {
     Pixel test = new Pixel(24, 38, 119);
@@ -21,12 +24,18 @@ public class PixelTest {
     assertNotEquals(test2.hashCode(), test3.hashCode());
   }
 
+  /**
+   * Tests the exception thrown when the constructor is passed a negative value.
+   */
   @Test (expected = IllegalArgumentException.class)
   public void testConstructPixelException() {
     Pixel badTest = new Pixel(-2, 1, 233);
     Pixel badTest2 = new Pixel(-255, 1, 3);
   }
 
+  /**
+   * Tests the getRed method.
+   */
   @Test
   public void testGetPixelValue() {
     Pixel test = new Pixel(24, 38, 119);
@@ -37,6 +46,9 @@ public class PixelTest {
     assertEquals(0, test3.getPixelValue());
   }
 
+  /**
+   * Tests the getPixelIntensity method.
+   */
   @Test
   public void testGetPixelIntensity() {
     Pixel test = new Pixel(24, 38, 119);
@@ -47,23 +59,35 @@ public class PixelTest {
     assertEquals(0, test3.getPixelIntensity());
   }
 
+  /**
+   * Tests the luma method.
+   */
   @Test
   public void testGetPixelLuma() {
     Pixel test = new Pixel(24, 38, 119);
     Pixel test2 = new Pixel(218, 254, 199);
     Pixel test3 = new Pixel(0,0,0);
+    assertEquals(40, test.getPixelLuma());
   }
 
+  /**
+   * Tests the red channel method.
+   */
   @Test
   public void testVisualizeRedChannel() {
-
   }
 
+  /**
+   * Tests the green channel method.
+   */
   @Test
   public void testVisualizeGreenChannel() {
 
   }
 
+  /**
+   * Tests the blue channel method.
+   */
   @Test
   public void testVisualizeBlueChannel() {
 
