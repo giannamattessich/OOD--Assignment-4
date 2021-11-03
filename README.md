@@ -37,5 +37,4 @@ List of commands and how to use them:
  - horizontal-flip <image-name>  <dest-image-name> -> flips image horizontally
  - vertical-flip <image-name>  <dest-image-name> -> flips image vertically
  - brighten <increment>  <image-name>  <dest-image-name> -> brightens image by specified increment(increment is positive).
-
-darken <increment>  <image-name>  <dest-image-name> -> darkens image by specified increment(increment is positive).
+ - darken <increment>  <image-name>  <dest-image-name> -> darkens image by specified increment(increment is positive).
