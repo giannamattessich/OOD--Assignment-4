@@ -21,6 +21,13 @@ public class ImageImpl implements Image {
     this.fileName = fileName;
   }
 
+  public ImageImpl(Image replace) {
+    this.fileName = replace.getFileName();
+    this.width = replace.getWidth();
+    this.height = replace.getHeight();
+    this.imagePixels = replace.getImagePixels();
+  }
+
   /**
    * Constructor to set everything.
    */

@@ -62,49 +62,31 @@ public class ImageControllerImpl implements ImageController {
         promptSave(saveFilePath, saveFileName);
         break;
       case "red-component":
-        String rImageName = sc.next();
-        String rDestFile = sc.next();
         createRedGreyscale();
         break;
       case "green-component":
-        String gImageName = sc.next();
-        String gDestFile = sc.next();
         createGreenGreyscale();
         break;
       case "blue-component":
-        String bImageName = sc.next();
-        String bDestFile = sc.next();
         createBlueGreyscale();
         break;
       case "value-component":
-        String vImageName = sc.next();
-        String vDestFile = sc.next();
         createValueGreyscale();
         break;
       case "luma-component":
-        String lImageName = sc.next();
-        String lDestFile = sc.next();
         createLumaGreyscale();
         break;
       case "intensity-component":
-        String iImageName = sc.next();
-        String iDestFile = sc.next();
         createIntensityGreyscale();
         break;
       case "horizontal-flip":
-        String hfImageName = sc.next();
-        String hfDestFile = sc.next();
         createHorizontalFlip();
         break;
       case "vertical-flip":
-        String vfImageName = sc.next();
-        String vfDestFile = sc.next();
         createVerticalFlip();
         break;
       case "brighten":
         int brInc = sc.nextInt();
-        String brImageName = sc.next();
-        String brDestFile = sc.next();
         createBrighten(brInc);
         break;
       default:

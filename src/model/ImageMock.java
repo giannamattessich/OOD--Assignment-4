@@ -2,7 +2,7 @@ package model;
 
 public class ImageMock extends ImageImpl {
 
-  private StringBuilder log = new StringBuilder();
+  public StringBuilder log = new StringBuilder();
 
   /**
    * Constructor for an abstract image.
@@ -11,6 +11,17 @@ public class ImageMock extends ImageImpl {
    */
   public ImageMock(String fileName) {
     super(fileName);
+  }
+
+  public ImageMock(Image image) {
+    super(image);
+  }
+
+  /**
+   * Gets the log.
+   */
+  public String getLog() {
+    return log.toString();
   }
 
   
@@ -24,7 +35,8 @@ public class ImageMock extends ImageImpl {
   @Override
   public Pixel getPixelAt(int row, int col) {
     log.append("getPixelAt(" + row + ", " + col + ")");
-    return super.getPixelAt(row, col);
+    return null;
+    //return super.getPixelAt(row, col);
   }
 
   
@@ -36,7 +48,8 @@ public class ImageMock extends ImageImpl {
   @Override
   public int getHeight() {
     log.append("getHeight()");
-    return super.getHeight();
+    return 0;
+    //return super.getHeight();
   }
 
   
@@ -48,7 +61,7 @@ public class ImageMock extends ImageImpl {
   @Override
   public void setFileName(String fileName) {
     log.append("setFileName(" + fileName + ")");
-    super.setFileName(fileName);
+    //super.setFileName(fileName);
   }
 
   
@@ -60,7 +73,8 @@ public class ImageMock extends ImageImpl {
   @Override
   public Pixel[][] getImagePixels() {
     log.append("getImagePixels()");
-    return super.getImagePixels();
+    return null;
+    //return super.getImagePixels();
   }
 
   /**
@@ -71,7 +85,7 @@ public class ImageMock extends ImageImpl {
   @Override
   public void setImagePixels(Pixel[][] pixels) {
     log.append("setImagePixels(" + pixels + ")");
-    super.setImagePixels(pixels);
+    //super.setImagePixels(pixels);
   }
 
   /**
@@ -84,7 +98,7 @@ public class ImageMock extends ImageImpl {
   @Override
   public void setPixelAt(int row, int col, Pixel pixel) {
     log.append("setPixelAt(" + row + ", " + col + ", " + pixel + ")");
-    super.setPixelAt(row, col, pixel);
+    //super.setPixelAt(row, col, pixel);
   }
 
   /**
@@ -94,7 +108,7 @@ public class ImageMock extends ImageImpl {
   @Override
   public void flipVertical() {
     log.append("flipVertical()");
-    super.flipVertical();
+    //super.flipVertical();
   }
 
   /**
@@ -104,7 +118,7 @@ public class ImageMock extends ImageImpl {
   @Override
   public void flipHorizontal() {
     log.append("flipHorizontal()");
-    super.flipHorizontal();
+    //super.flipHorizontal();
   }
 
   /**
@@ -115,7 +129,7 @@ public class ImageMock extends ImageImpl {
   @Override
   public void brighten(int factor) {
     log.append("brighten(" + factor + ")");
-    super.brighten(factor);
+    //super.brighten(factor);
   }
 
   /**
@@ -126,7 +140,7 @@ public class ImageMock extends ImageImpl {
   @Override
   public void darken(int factor) {
     log.append("darken(" + factor + ")");
-    super.darken(factor);
+    //super.darken(factor);
   }
 
   /**
@@ -136,7 +150,7 @@ public class ImageMock extends ImageImpl {
   @Override
   public void redComponent() {
     log.append("redComponent()");
-    super.redComponent();
+    //super.redComponent();
   }
 
   /**
@@ -146,7 +160,7 @@ public class ImageMock extends ImageImpl {
   @Override
   public void greenComponent() {
     log.append("greenComponent()");
-    super.greenComponent();
+    //super.greenComponent();
   }
 
   /**
@@ -156,7 +170,7 @@ public class ImageMock extends ImageImpl {
   @Override
   public void blueComponent() {
     log.append("blueComponent()");
-    super.blueComponent();
+    //super.blueComponent();
   }
 
   /**
@@ -166,7 +180,7 @@ public class ImageMock extends ImageImpl {
   @Override
   public void lumaComponent() {
     log.append("lumaComponent()");
-    super.lumaComponent();
+    //super.lumaComponent();
   }
 
   /**
@@ -176,7 +190,7 @@ public class ImageMock extends ImageImpl {
   @Override
   public void intensityComponent() {
     log.append("intensityComponent()");
-    super.intensityComponent();
+    //super.intensityComponent();
   }
 
   /**
@@ -186,7 +200,7 @@ public class ImageMock extends ImageImpl {
   @Override
   public void valueComponent() {
     log.append("valueComponent()");
-    super.valueComponent();
+    //super.valueComponent();
   }
   
 
