@@ -14,7 +14,7 @@ public abstract class AbstractGreyScale implements ColorTransformations {
   /**
    * Enumeration to represent type of greyscale transformation.
    */
-  protected enum greyScaleType {red, green, blue, value, intensity, luma}
+  protected enum greyScaleType { red, green, blue, value, intensity, luma }
 
   protected greyScaleType type;
 

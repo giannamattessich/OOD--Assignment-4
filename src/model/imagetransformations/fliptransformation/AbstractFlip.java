@@ -13,7 +13,7 @@ import model.Pixel;
 public abstract class AbstractFlip implements FlipTransformations {
   flipTypes type;
 
-  enum flipTypes {vertical, horizontal}
+  enum flipTypes { vertical, horizontal }
 
   /**
    * Abstract constructor for a flip transformation.
