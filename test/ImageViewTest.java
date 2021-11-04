@@ -8,6 +8,9 @@ import view.ImageProcessorView;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Class to test view.
+ */
 public class ImageViewTest {
   Appendable ap = new StringBuilder();
   ImageProcessorView view = new ImageProcessorTextView(ap);

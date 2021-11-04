@@ -53,7 +53,7 @@ public class Pixel {
   }
 
   /**
-   * Method to set red component of pixel
+   * Method to set red component of pixel.
    * @param red represents new red component value.
    * @throws IllegalArgumentException if new red value is less than 0 or greater than 255.
    */
@@ -66,7 +66,7 @@ public class Pixel {
   }
 
   /**
-   * Method to set green component of pixel
+   * Method to set green component of pixel.
    * @param green represents new red component value.
    * @throws IllegalArgumentException if new green value is less than 0 or greater than 255.
    */
@@ -79,7 +79,7 @@ public class Pixel {
   }
 
   /**
-   * Method to set blue component of pixel
+   * Method to set blue component of pixel.
    * @param blue represents new blue component value.
    * @throws IllegalArgumentException if new blue value is less than 0 or greater than 255.
    */

@@ -1,8 +1,8 @@
-package model.ImageTransformations.LightTransformations;
+package model.imagetransformations.lighttransformation;
 
 import model.Image;
 import model.ImageModel;
-import model.ImageTransformations.ImageProcessor;
+import model.imagetransformations.ImageProcessor;
 
 /**
  * Abstract class to represent the different lighting transformations.
@@ -14,7 +14,7 @@ public abstract class AbstractLight implements LightTransformations {
   protected int increment;
   protected lightTypes type;
 
-  enum lightTypes {brighten, darken}
+  enum lightTypes { brighten, darken }
 
   /**
    * Abstract constructor for a light transformation.
@@ -34,22 +34,19 @@ public abstract class AbstractLight implements LightTransformations {
     int givenHeight = orgImage.getHeight();
     int givenWidth = orgImage.getWidth();
     lightTypes type = this.type;
-    switch (type) {
-      case brighten:
-        for (int i = 0; i < givenHeight; i++) {
-          for (int j = 0; j < givenWidth; j++) {
-            resultImage.getImagePixels()[i][j] = resultImage.getPixelAt(i, j).brighten(increment);
-          }
+    if (type == lightTypes.brighten) {
+      for (int i = 0; i < givenHeight; i++) {
+        for (int j = 0; j < givenWidth; j++) {
+          resultImage.getImagePixels()[i][j] = resultImage.getPixelAt(i, j).brighten(increment);
         }
-        break;
-      case darken:
-        for (int i = 0; i < givenHeight; i++) {
-          for (int j = 0; j < givenWidth; j++) {
-            resultImage.getImagePixels()[i][j] = resultImage.getPixelAt(i, j)
-                    .brighten(increment * -1);
-          }
+      }
+    } else if (type == lightTypes.darken) {
+      for (int i = 0; i < givenHeight; i++) {
+        for (int j = 0; j < givenWidth; j++) {
+          resultImage.getImagePixels()[i][j] = resultImage.getPixelAt(i, j)
+                  .brighten(increment * -1);
         }
-        break;
+      }
     }
     return resultImage;
   }

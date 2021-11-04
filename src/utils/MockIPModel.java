@@ -4,14 +4,23 @@ import java.io.IOException;
 
 import model.Image;
 import model.ImageProcessorModel;
-import model.ImageTransformations.ImageProcessor;
+import model.imagetransformations.ImageProcessor;
 
+/**
+ * Class to represent mock ImageProcessorModel.
+ */
 public class MockIPModel implements ImageProcessorModel {
   Appendable log;
 
+  /**
+   * Constructor for a mock model.
+   *
+   * @param log keeps track of input given to model.
+   */
   public MockIPModel(Appendable log) {
     this.log = log;
   }
+
   @Override
   public void setImagePath(String filePath) {
     try {
@@ -40,7 +49,7 @@ public class MockIPModel implements ImageProcessorModel {
   public Image getImage(String fileName) {
     try {
       log.append("Retrieving key -> ").append(fileName).append("\n");
-    } catch(IOException e) {
+    } catch (IOException e) {
       e.printStackTrace();
     }
     return null;

@@ -4,10 +4,10 @@ import java.util.Arrays;
 
 import model.Image;
 import model.ImageModel;
-import model.ImageTransformations.ColorTransformations.BlueGreyScale;
-import model.ImageTransformations.ColorTransformations.GreenGreyScale;
-import model.ImageTransformations.ColorTransformations.RedGreyScale;
-import model.ImageTransformations.FlipTransformations.VerticalFlip;
+import model.imagetransformations.colortransformation.BlueGreyScale;
+import model.imagetransformations.colortransformation.GreenGreyScale;
+import model.imagetransformations.colortransformation.RedGreyScale;
+import model.imagetransformations.fliptransformation.VerticalFlip;
 import model.Pixel;
 
 import static org.junit.Assert.assertEquals;
@@ -25,6 +25,9 @@ public class ImageModelTest {
   private final Image test2;
   private final Image test3;
 
+  /**
+   * Constructor for an image model test.
+   */
   public ImageModelTest() {
     this.imgpixels = new Pixel[3][3];
     for (int i = 0; i < 3; i++) {
@@ -64,7 +67,7 @@ public class ImageModelTest {
 
   @Test
   public void testSetPixelAt() {
-    Pixel p = new Pixel (1, 2, 3);
+    Pixel p = new Pixel(1, 2, 3);
     Pixel p2 = new Pixel(0,0,0);
     assertEquals(p2, test.getPixelAt(2, 2));
     test.setPixelAt(2, 2, 1, 2, 3);
@@ -76,6 +79,7 @@ public class ImageModelTest {
     assertTrue(Arrays.deepEquals(imgpixels, test.getImagePixels()));
     assertTrue(Arrays.deepEquals(imgpixels2, test2.getImagePixels()));
     assertTrue(Arrays.deepEquals(imgpixels, test3.getImagePixels()));
+    assertTrue(Arrays.deepEquals(imgpixels3, test3.getImagePixels()));
   }
 
   @Test

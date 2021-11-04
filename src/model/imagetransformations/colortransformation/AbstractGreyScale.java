@@ -1,8 +1,8 @@
-package model.ImageTransformations.ColorTransformations;
+package model.imagetransformations.colortransformation;
 
 import model.Image;
 import model.ImageModel;
-import model.ImageTransformations.ImageProcessor;
+import model.imagetransformations.ImageProcessor;
 
 /**
  * Abstract class to represent the different greyscale transformations.
@@ -11,7 +11,10 @@ import model.ImageTransformations.ImageProcessor;
  * intensity greyscale, and luma greyscale.
  */
 public abstract class AbstractGreyScale implements ColorTransformations {
-  public enum greyScaleType {red, green, blue, value, intensity, luma}
+  /**
+   * Enumeration to represent type of greyscale transformation.
+   */
+  protected enum greyScaleType {red, green, blue, value, intensity, luma}
 
   protected greyScaleType type;
 
@@ -80,6 +83,12 @@ public abstract class AbstractGreyScale implements ColorTransformations {
           }
         }
         break;
+      default:
+        for (int i = 0; i < givenHeight; i++) {
+          for (int j = 0; j < givenWidth; j++) {
+            resultImage.setPixelAt(i, j, 0, 0, 0);
+          }
+        }
     }
     return resultImage;
   }

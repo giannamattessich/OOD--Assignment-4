@@ -12,6 +12,10 @@ import view.ImageProcessorView;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+/**
+ * Class to test ImageProcessorController. Checks whether correct inputs are being sent to model
+ * using model mock.
+ */
 public class ImageControllerTest {
   StringBuilder log = new StringBuilder();
   Appendable out = new StringBuilder();

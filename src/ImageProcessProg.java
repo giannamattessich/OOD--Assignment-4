@@ -8,8 +8,16 @@ import model.ImageProcessorModelImpl;
 import view.ImageProcessorTextView;
 import view.ImageProcessorView;
 
+/**
+ * Class with main method.
+ */
 public class ImageProcessProg {
 
+  /**
+   * Main method of image processor program.
+   *
+   * @param args command-line args.
+   */
   public static void main(String[] args) {
     Readable input = new BufferedReader(new InputStreamReader(System.in));
     ImageProcessorModel model = new ImageProcessorModelImpl();

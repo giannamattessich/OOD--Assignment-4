@@ -3,11 +3,14 @@ import org.junit.Test;
 import model.Image;
 import model.ImageProcessorModel;
 import model.ImageProcessorModelImpl;
-import model.ImageTransformations.ColorTransformations.RedGreyScale;
+import model.imagetransformations.colortransformation.RedGreyScale;
 import utils.ImageUtil;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Class to test Image Processor Model.
+ */
 public class ImageProcessorModelTest {
   ImageProcessorModel test = new ImageProcessorModelImpl();
   ImageProcessorModel test2 = new ImageProcessorModelImpl();

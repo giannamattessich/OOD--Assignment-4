@@ -6,16 +6,16 @@ import java.util.Scanner;
 
 import model.Image;
 import model.ImageProcessorModel;
-import model.ImageTransformations.ColorTransformations.BlueGreyScale;
-import model.ImageTransformations.ColorTransformations.GreenGreyScale;
-import model.ImageTransformations.ColorTransformations.IntensityGreyScale;
-import model.ImageTransformations.ColorTransformations.LumaGreyScale;
-import model.ImageTransformations.ColorTransformations.RedGreyScale;
-import model.ImageTransformations.ColorTransformations.ValueGreyScale;
-import model.ImageTransformations.FlipTransformations.HorizontalFlip;
-import model.ImageTransformations.FlipTransformations.VerticalFlip;
-import model.ImageTransformations.LightTransformations.Brighten;
-import model.ImageTransformations.LightTransformations.Darken;
+import model.imagetransformations.colortransformation.BlueGreyScale;
+import model.imagetransformations.colortransformation.GreenGreyScale;
+import model.imagetransformations.colortransformation.IntensityGreyScale;
+import model.imagetransformations.colortransformation.LumaGreyScale;
+import model.imagetransformations.colortransformation.RedGreyScale;
+import model.imagetransformations.colortransformation.ValueGreyScale;
+import model.imagetransformations.fliptransformation.HorizontalFlip;
+import model.imagetransformations.fliptransformation.VerticalFlip;
+import model.imagetransformations.lighttransformation.Brighten;
+import model.imagetransformations.lighttransformation.Darken;
 import utils.ImageUtil;
 import view.ImageProcessorView;
 
@@ -28,7 +28,13 @@ public class ImageProcessorControllerImpl implements ImageProcessorController {
   private final ImageProcessorView view;
   private final Readable reader;
 
-
+  /**
+   * Constructor for controller.
+   *
+   * @param model  uses input from controller.
+   * @param view   transmits information to user.
+   * @param reader creates input stream for user input.
+   */
   public ImageProcessorControllerImpl(ImageProcessorModel model, ImageProcessorView view,
                                       Readable reader) {
     if (model == null) {
