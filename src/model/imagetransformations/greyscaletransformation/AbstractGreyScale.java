@@ -1,4 +1,4 @@
-package model.imagetransformations.colortransformation;
+package model.imagetransformations.greyscaletransformation;
 
 import model.Image;
 import model.ImageModel;
@@ -10,7 +10,7 @@ import model.imagetransformations.ImageProcessor;
  * include red greyscale, green greyscale, blue greyscale, value greyscale,
  * intensity greyscale, and luma greyscale.
  */
-public abstract class AbstractGreyScale implements ColorTransformations {
+public abstract class AbstractGreyScale implements GreyscaleTransformations {
   /**
    * Enumeration to represent type of greyscale transformation.
    */

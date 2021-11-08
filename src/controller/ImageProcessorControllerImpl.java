@@ -6,12 +6,12 @@ import java.util.Scanner;
 
 import model.Image;
 import model.ImageProcessorModel;
-import model.imagetransformations.colortransformation.BlueGreyScale;
-import model.imagetransformations.colortransformation.GreenGreyScale;
-import model.imagetransformations.colortransformation.IntensityGreyScale;
-import model.imagetransformations.colortransformation.LumaGreyScale;
-import model.imagetransformations.colortransformation.RedGreyScale;
-import model.imagetransformations.colortransformation.ValueGreyScale;
+import model.imagetransformations.greyscaletransformation.BlueGreyScale;
+import model.imagetransformations.greyscaletransformation.GreenGreyScale;
+import model.imagetransformations.greyscaletransformation.IntensityGreyScale;
+import model.imagetransformations.greyscaletransformation.LumaGreyScale;
+import model.imagetransformations.greyscaletransformation.RedGreyScale;
+import model.imagetransformations.greyscaletransformation.ValueGreyScale;
 import model.imagetransformations.fliptransformation.HorizontalFlip;
 import model.imagetransformations.fliptransformation.VerticalFlip;
 import model.imagetransformations.lighttransformation.Brighten;

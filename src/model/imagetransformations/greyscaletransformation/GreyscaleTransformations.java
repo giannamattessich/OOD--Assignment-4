@@ -1,4 +1,4 @@
-package model.imagetransformations.colortransformation;
+package model.imagetransformations.greyscaletransformation;
 
 import model.Image;
 import model.imagetransformations.ImageProcessor;
@@ -8,7 +8,7 @@ import model.imagetransformations.ImageProcessor;
  * class Image Processor. Can be used to represent classes which implement different color
  * transformations.
  */
-public interface ColorTransformations extends ImageProcessor {
+public interface GreyscaleTransformations extends ImageProcessor {
 
   @Override
   Image process(Image orgImage);

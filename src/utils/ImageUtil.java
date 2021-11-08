@@ -1,11 +1,16 @@
 package utils;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Objects;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.io.FileInputStream;
+
+import javax.imageio.ImageIO;
 
 import model.Image;
 import model.ImageModel;
@@ -97,5 +102,111 @@ public class ImageUtil {
       throw new IllegalArgumentException("FilePath must end in .ppm");
     }
   }
-}
 
+  /**
+   * Method to read image file of all types, including PPM, PNG, and JPEG Files.
+   *
+   * @param filePath is path of file to be read.
+   * @throws IllegalArgumentException thrown if provided with null filepath or invalid
+   *                                  file extension.
+   */
+  public static Image readImageFile(String filePath)
+          throws IllegalArgumentException {
+    if (filePath == null) {
+      throw new IllegalArgumentException("Image to be created cannot be null");
+    }
+    if (!((filePath.endsWith(".ppm")) || (filePath.endsWith(".jpeg"))
+            || (filePath.endsWith(".jpg")) || (filePath.endsWith(".bmp")) ||
+            (filePath.endsWith(".png")))) {
+      throw new IllegalArgumentException(filePath + " does not a valid file extension");
+    }
+    if (filePath.endsWith(".jpeg") || filePath.endsWith(".png") || filePath.endsWith(".bmp") ||
+            (filePath.endsWith(".jpg"))) {
+      File imgFile = new File(filePath);
+      Image output = new ImageModel(null);
+      try {
+        BufferedImage bImg = ImageIO.read(imgFile);
+        Pixel[][] pixelMatrix = new Pixel[bImg.getHeight()][bImg.getWidth()];
+
+        for (int i = 0; i < bImg.getHeight(); i++) {
+          for (int j = 0; j < bImg.getWidth(); j++) {
+            Color pixelColor = new Color(bImg.getRGB(i, j));
+            Pixel setPixel = new
+                    Pixel(pixelColor.getRed(), pixelColor.getGreen(), pixelColor.getBlue());
+            pixelMatrix[i][j] = setPixel;
+          }
+        }
+        output.setImagePixels(pixelMatrix);
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+      return output;
+
+    } else {
+      return ImageUtil.readPPM(filePath);
+    }
+  }
+
+  /**
+   * Converts an image model to a buffered image to be written as a file.
+   *
+   * @param image to be converted.
+   * @return buffered image version of given image.
+   */
+  public static BufferedImage convertImage(Image image) {
+    BufferedImage bImg = new BufferedImage(image.getWidth(), image.getHeight(),
+            BufferedImage.TYPE_INT_RGB);
+    for (int i = 0; i < bImg.getHeight(); i++) {
+      for (int j = 0; j < bImg.getWidth(); j++) {
+        int red = image.getPixelAt(i, j).getRed();
+        int green = image.getPixelAt(i, j).getGreen();
+        int blue = image.getPixelAt(i, j).getBlue();
+        Color c = new Color(red, green, blue);
+        bImg.setRGB(i, j, c.getRGB());
+      }
+    }
+    return bImg;
+  }
+
+  /**
+   * Writes an image model to an image file.
+   *
+   * @param filePath for image to be saved to.
+   * @param image    to be saved.
+   * @throws IllegalArgumentException if image does not have valid filepath extension.
+   */
+  public static void writeImageFile(String filePath, Image image) throws
+          IllegalArgumentException {
+    if (filePath == null) {
+      throw new IllegalArgumentException("File Path cannot be null.");
+    }
+    if (!((filePath.endsWith(".jpeg")) || (filePath.endsWith(".jpg"))
+            || (filePath.endsWith(".png")) || (filePath.endsWith(".bmp")) ||
+            (filePath.endsWith(".ppm")))) {
+      throw new IllegalArgumentException("Invalid FilePath Extension provided.");
+    }
+    BufferedImage bImg = ImageUtil.convertImage(image);
+    File imgFile = new File(filePath);
+    if ((filePath.endsWith(".jpeg")) || (filePath.endsWith(".jpg"))) {
+      try {
+        ImageIO.write(bImg, "jpeg", imgFile);
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    } else if (filePath.endsWith(".png")) {
+      try {
+        ImageIO.write(bImg, "png", imgFile);
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    } else if (filePath.endsWith(".bmp")) {
+      try {
+        ImageIO.write(bImg, "bmp", imgFile);
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    } else if (filePath.endsWith(".ppm")) {
+      ImageUtil.writePPMFile(filePath, image);
+    }
+  }
+}

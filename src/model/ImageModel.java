@@ -9,7 +9,7 @@ import model.imagetransformations.ImageProcessor;
  * of a model.
  */
 public class ImageModel implements Image {
-  private final Pixel[][] imagePixels;
+  private Pixel[][] imagePixels;
 
   /**
    * Creates an Image from the given 2D matrix of Pixels.
@@ -32,6 +32,11 @@ public class ImageModel implements Image {
     p.setGreen(green);
     p.setBlue(blue);
     this.imagePixels[row][col] = p;
+  }
+
+  @Override
+  public void setImagePixels(Pixel[][] pixels) {
+    this.imagePixels = pixels;
   }
 
   @Override

@@ -29,11 +29,18 @@ public interface Image {
   void setPixelAt(int row, int col, int red, int green, int blue);
 
   /**
+   * Sets Pixels of image.
+   * @param pixels pixels for this image to be set to.
+   */
+ void setImagePixels(Pixel[][] pixels);
+
+  /**
    * Gets Pixels of image.
    *
    * @return pixels of image;
    */
   Pixel[][] getImagePixels();
+
 
   /**
    * Gets width of image.
