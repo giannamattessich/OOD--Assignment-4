@@ -49,9 +49,10 @@ public abstract class AbstractColorTransformation implements ColorTransformation
 
   @Override
   public Image process(Image orgImg) {
-    Pixel[][] newPixels = new Pixel[orgImg.getHeight()][orgImg.getWidth()];
-    for (int i = 0; i < orgImg.getHeight(); i++) {
-      for (int j = 0; j < orgImg.getWidth(); j++) {
+    Image result = new ImageModel(orgImg.getImagePixels());
+    Pixel[][] newPixels = new Pixel[result.getHeight()][result.getWidth()];
+    for (int i = 0; i < result.getHeight(); i++) {
+      for (int j = 0; j < result.getWidth(); j++) {
         int newRed = multiplyMatrix(orgImg.getPixelAt(i, j)).getRed();
         int newGreen = multiplyMatrix(orgImg.getPixelAt(i, j)).getGreen();
         int newBlue = multiplyMatrix(orgImg.getPixelAt(i, j)).getBlue();

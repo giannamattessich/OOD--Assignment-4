@@ -5,7 +5,7 @@ name is referenced later on in the program to apply transformations to this imag
 new images.
 *USERS CAN load .bmp, .jpeg, .jpg, and .png as well.
 
-load res/test1.ppm test
+load res/hw5test.ppm test
 
 *CREATES RED GREYSCALE, PROVIDE image-name and new image-name for the image that is transformed
 
@@ -105,9 +105,39 @@ save res/testDark.ppm testDark
 *CREATES SHARPENED IMAGE, PROVIDE image-name and new image-name for the image
 that is transformed
 
-vertical-flip test testVF
+sharpen test testSharp
 
-*SAVES VERTICALLY FLIPPED IMAGE, PROVIDE image-path and image-name
+*SAVES SHARPENED IMAGE, PROVIDE image-path and image-name
 *image-path must end in a valid file format and include the image-name
 
-save res/testVF.png testVF
+save res/testSharp.png testSharp
+
+*CREATES BLURRED IMAGE, PROVIDE image-name and new image-name for the image
+that is transformed
+
+blur test testBlur
+
+*SAVES BLURRED IMAGE, PROVIDE image-path and image-name
+*image-path must end in a valid file format and include the image-name
+
+save res/testBlur.png testBlur
+
+*CREATES IMAGE WITH GREYSCALE FILTER APPLIED, PROVIDE image-name and new image-name for the image
+that is transformed
+
+greyscale test testGreyScale
+
+*SAVES GREYSCALE IMAGE, PROVIDE image-path and image-name
+*image-path must end in a valid file format and include the image-name
+
+save res/testGreyScale.png testGreyScale
+
+*CREATES IMAGE WITH SEPIA FILTER APPLIED, PROVIDE image-name and new image-name for the image
+that is transformed
+
+sepia test testSepia
+
+*SAVES SEPIA IMAGE, PROVIDE image-path and image-name
+*image-path must end in a valid file format and include the image-name
+
+save res/testSepia.png testSepia

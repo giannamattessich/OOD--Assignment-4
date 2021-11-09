@@ -24,16 +24,16 @@ public class ImageControllerTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void testContructConExcept() {
-    Readable input = new StringReader("load res/TestPPM.ppm test");
+    Readable input = new StringReader("load images/TestPPM.ppm test");
     ImageProcessorController con = new ImageProcessorControllerImpl(mockMod, null, input);
   }
 
   @Test
   public void testLoadImage() {
-    Readable input = new StringReader("load res/TestPPM.ppm test");
+    Readable input = new StringReader("load images/TestPPM.ppm test");
     ImageProcessorController con = new ImageProcessorControllerImpl(mockMod, viewTest, input);
     con.promptImageCommands();
-    assertEquals("Set image path is -> res/TestPPM.ppm\n" +
+    assertEquals("Set image path is -> images/TestPPM.ppm\n" +
             "Saved fileName is -> test\n" +
             "Image is saved as test\n", log.toString());
   }
@@ -41,7 +41,7 @@ public class ImageControllerTest {
   @Test
   public void testLoadImageBadPath() {
     //this will throw an exception and therefore nothing is sent to controller
-    Readable input = new StringReader("load res/TestPRRRRRRPM.ppm test");
+    Readable input = new StringReader("load images/TestPRRRRRRPM.ppm test");
     ImageProcessorController con = new ImageProcessorControllerImpl(mockMod, viewTest, input);
     con.promptImageCommands();
     assertEquals("", log.toString());
@@ -50,28 +50,28 @@ public class ImageControllerTest {
   @Test
   public void saveImage() {
     Readable input = new StringReader("load images/koala.ppm koala " +
-            "save res/koala.ppm koala");
+            "save images/koala.ppm koala");
     ImageProcessorController con = new ImageProcessorControllerImpl(new ImageProcessorModelImpl()
             , viewTest, input);
     con.promptImageCommands();
     assertTrue(out.toString().contains("File koala successfully loaded!\n" +
-            "Image koala successfully saved to file res/koala.ppm!"));
+            "Image koala successfully saved to file images/koala.ppm!"));
   }
 
   @Test (expected = IllegalArgumentException.class)
   public void saveImageBadPath() {
-    Readable input = new StringReader("load res/TestPPM.ppm test " +
-            "save res/test.phe test");
+    Readable input = new StringReader("load images/TestPPM.ppm test " +
+            "save images/test.phe test");
     ImageProcessorController con = new ImageProcessorControllerImpl(mockMod, viewTest, input);
     con.promptImageCommands();
-    assertEquals("Set image path is -> res/TestPPM.ppm\n" +
+    assertEquals("Set image path is -> images/TestPPM.ppm\n" +
             "Saved fileName is -> test\n" +
             "Image is saved as test\n", log.toString());
   }
 
   @Test
   public void testWelcome() {
-    Readable input = new StringReader("load res/TestPPM.ppm test ");
+    Readable input = new StringReader("load images/TestPPM.ppm test ");
     ImageProcessorController con = new ImageProcessorControllerImpl(new ImageProcessorModelImpl(),
             viewTest, input);
     con.promptImageCommands();
@@ -106,10 +106,10 @@ public class ImageControllerTest {
 
   @Test
   public void testRedImg() {
-    Readable input = new StringReader("load res/TestPPM.ppm test red-component test testRed");
+    Readable input = new StringReader("load images/TestPPM.ppm test red-component test testRed");
     ImageProcessorController con = new ImageProcessorControllerImpl(mockMod, viewTest, input);
     con.promptImageCommands();
-    assertEquals("Set image path is -> res/TestPPM.ppm\n" +
+    assertEquals("Set image path is -> images/TestPPM.ppm\n" +
             "Saved fileName is -> test\n" +
             "Image is saved as test\n" +
             "Creating a transformed image of -> test\n" +
@@ -119,10 +119,10 @@ public class ImageControllerTest {
 
   @Test
   public void testBlueImg() {
-    Readable input = new StringReader("load res/TestPPM.ppm test blue-component test testBlue");
+    Readable input = new StringReader("load images/TestPPM.ppm test blue-component test testBlue");
     ImageProcessorController con = new ImageProcessorControllerImpl(mockMod, viewTest, input);
     con.promptImageCommands();
-    assertEquals("Set image path is -> res/TestPPM.ppm\n" +
+    assertEquals("Set image path is -> images/TestPPM.ppm\n" +
             "Saved fileName is -> test\n" +
             "Image is saved as test\n" +
             "Creating a transformed image of -> test\n" +
@@ -132,11 +132,11 @@ public class ImageControllerTest {
 
   @Test
   public void testGreenImg() {
-    Readable input = new StringReader("load res/TestPPM.ppm test " +
+    Readable input = new StringReader("load images/TestPPM.ppm test " +
             "green-component test testGreen");
     ImageProcessorController con = new ImageProcessorControllerImpl(mockMod, viewTest, input);
     con.promptImageCommands();
-    assertEquals("Set image path is -> res/TestPPM.ppm\n" +
+    assertEquals("Set image path is -> images/TestPPM.ppm\n" +
             "Saved fileName is -> test\n" +
             "Image is saved as test\n" +
             "Creating a transformed image of -> test\n" +
@@ -146,11 +146,11 @@ public class ImageControllerTest {
 
   @Test
   public void testValueImg() {
-    Readable input = new StringReader("load res/TestPPM.ppm test value-component " +
+    Readable input = new StringReader("load images/TestPPM.ppm test value-component " +
             "test testVal");
     ImageProcessorController con = new ImageProcessorControllerImpl(mockMod, viewTest, input);
     con.promptImageCommands();
-    assertEquals("Set image path is -> res/TestPPM.ppm\n" +
+    assertEquals("Set image path is -> images/TestPPM.ppm\n" +
             "Saved fileName is -> test\n" +
             "Image is saved as test\n" +
             "Creating a transformed image of -> test\n" +
@@ -160,11 +160,11 @@ public class ImageControllerTest {
 
   @Test
   public void testIntensityImg() {
-    Readable input = new StringReader("load res/TestPPM.ppm test intensity-component " +
+    Readable input = new StringReader("load images/TestPPM.ppm test intensity-component " +
             "test testIntensity");
     ImageProcessorController con = new ImageProcessorControllerImpl(mockMod, viewTest, input);
     con.promptImageCommands();
-    assertEquals("Set image path is -> res/TestPPM.ppm\n" +
+    assertEquals("Set image path is -> images/TestPPM.ppm\n" +
             "Saved fileName is -> test\n" +
             "Image is saved as test\n" +
             "Creating a transformed image of -> test\n" +
@@ -174,10 +174,10 @@ public class ImageControllerTest {
 
   @Test
   public void testLumaImg() {
-    Readable input = new StringReader("load res/TestPPM.ppm test luma-component test testLuma");
+    Readable input = new StringReader("load images/TestPPM.ppm test luma-component test testLuma");
     ImageProcessorController con = new ImageProcessorControllerImpl(mockMod, viewTest, input);
     con.promptImageCommands();
-    assertEquals("Set image path is -> res/TestPPM.ppm\n" +
+    assertEquals("Set image path is -> images/TestPPM.ppm\n" +
             "Saved fileName is -> test\n" +
             "Image is saved as test\n" +
             "Creating a transformed image of -> test\n" +
@@ -187,10 +187,10 @@ public class ImageControllerTest {
 
   @Test
   public void testFlipVImg() {
-    Readable input = new StringReader("load res/TestPPM.ppm test vertical-flip test testFlipV");
+    Readable input = new StringReader("load images/TestPPM.ppm test vertical-flip test testFlipV");
     ImageProcessorController con = new ImageProcessorControllerImpl(mockMod, viewTest, input);
     con.promptImageCommands();
-    assertEquals("Set image path is -> res/TestPPM.ppm\n" +
+    assertEquals("Set image path is -> images/TestPPM.ppm\n" +
             "Saved fileName is -> test\n" +
             "Image is saved as test\n" +
             "Creating a transformed image of -> test\n" +
@@ -200,11 +200,11 @@ public class ImageControllerTest {
 
   @Test
   public void testFlipHImg() {
-    Readable input = new StringReader("load res/TestPPM.ppm test horizontal-flip test" +
+    Readable input = new StringReader("load images/TestPPM.ppm test horizontal-flip test" +
             " testFlipH");
     ImageProcessorController con = new ImageProcessorControllerImpl(mockMod, viewTest, input);
     con.promptImageCommands();
-    assertEquals("Set image path is -> res/TestPPM.ppm\n" +
+    assertEquals("Set image path is -> images/TestPPM.ppm\n" +
             "Saved fileName is -> test\n" +
             "Image is saved as test\n" +
             "Creating a transformed image of -> test\n" +
@@ -214,11 +214,11 @@ public class ImageControllerTest {
 
   @Test
   public void testBrightImg() {
-    Readable input = new StringReader("load res/TestPPM.ppm test brighten 300 test" +
+    Readable input = new StringReader("load images/TestPPM.ppm test brighten 300 test" +
             " testBrighten");
     ImageProcessorController con = new ImageProcessorControllerImpl(mockMod, viewTest, input);
     con.promptImageCommands();
-    assertEquals("Set image path is -> res/TestPPM.ppm\n" +
+    assertEquals("Set image path is -> images/TestPPM.ppm\n" +
             "Saved fileName is -> test\n" +
             "Image is saved as test\n" +
             "Creating a transformed image of -> test\n" +
@@ -228,11 +228,11 @@ public class ImageControllerTest {
 
   @Test
   public void testDarkImg() {
-    Readable input = new StringReader("load res/TestPPM.ppm test darken 20 test" +
+    Readable input = new StringReader("load images/TestPPM.ppm test darken 20 test" +
             " testDarken");
     ImageProcessorController con = new ImageProcessorControllerImpl(mockMod, viewTest, input);
     con.promptImageCommands();
-    assertEquals("Set image path is -> res/TestPPM.ppm\n" +
+    assertEquals("Set image path is -> images/TestPPM.ppm\n" +
             "Saved fileName is -> test\n" +
             "Image is saved as test\n" +
             "Creating a transformed image of -> test\n" +
@@ -242,11 +242,11 @@ public class ImageControllerTest {
 
   @Test
   public void testGreyscaleImg() {
-    Readable input = new StringReader("load res/TestPPM.ppm test greyscale test testGreyscale " +
-            "horizontal-flip testGreyscale testGreyscaleHor");
+    Readable input = new StringReader("load images/TestPPM.ppm test greyscale test" +
+            " testGreyscale horizontal-flip testGreyscale testGreyscaleHor");
     ImageProcessorController con = new ImageProcessorControllerImpl(mockMod, viewTest, input);
     con.promptImageCommands();
-    assertEquals("Set image path is -> res/TestPPM.ppm\n" +
+    assertEquals("Set image path is -> images/TestPPM.ppm\n" +
             "Saved fileName is -> test\n" +
             "Image is saved as test\n" +
             "Creating a transformed image of -> test\n" +
@@ -259,10 +259,10 @@ public class ImageControllerTest {
 
   @Test
   public void testSepiaImg() {
-    Readable input = new StringReader("load res/TestPPM.ppm test sepia test testSepia");
+    Readable input = new StringReader("load images/TestPPM.ppm test sepia test testSepia");
     ImageProcessorController con = new ImageProcessorControllerImpl(mockMod, viewTest, input);
     con.promptImageCommands();
-    assertEquals("Set image path is -> res/TestPPM.ppm\n" +
+    assertEquals("Set image path is -> images/TestPPM.ppm\n" +
             "Saved fileName is -> test\n" +
             "Image is saved as test\n" +
             "Creating a transformed image of -> test\n" +
@@ -272,11 +272,11 @@ public class ImageControllerTest {
 
   @Test
   public void testBlurImg() {
-    Readable input = new StringReader("load res/TestPPM.ppm test blur test testBlur blur " +
+    Readable input = new StringReader("load images/TestPPM.ppm test blur test testBlur blur " +
             "testBlur testBlur2 blur testBlur2 testBlur3");
     ImageProcessorController con = new ImageProcessorControllerImpl(mockMod, viewTest, input);
     con.promptImageCommands();
-    assertEquals("Set image path is -> res/TestPPM.ppm\n" +
+    assertEquals("Set image path is -> images/TestPPM.ppm\n" +
             "Saved fileName is -> test\nImage is saved as test\n" +
             "Creating a transformed image of -> test\nSaved fileName is -> testBlur\n" +
             "Image is saved as testBlur\nCreating a transformed image of -> testBlur\n" +
@@ -287,11 +287,11 @@ public class ImageControllerTest {
 
   @Test
   public void testSharpen() {
-    Readable input = new StringReader("load res/TestPPM.ppm test sharpen test testSharpen" +
+    Readable input = new StringReader("load images/TestPPM.ppm test sharpen test testSharpen" +
             " red-component testSharpen testSharpenRed");
     ImageProcessorController con = new ImageProcessorControllerImpl(mockMod, viewTest, input);
     con.promptImageCommands();
-    assertEquals("Set image path is -> res/TestPPM.ppm\n" +
+    assertEquals("Set image path is -> images/TestPPM.ppm\n" +
             "Saved fileName is -> test\n" +
             "Image is saved as test\n" +
             "Creating a transformed image of -> test\n" +
@@ -304,11 +304,11 @@ public class ImageControllerTest {
 
   @Test
   public void testDefaultCommand() {
-    Readable input = new StringReader("load res/TestPPM.ppm test darkEEen 20 test" +
+    Readable input = new StringReader("load images/TestPPM.ppm test darkEEen 20 test" +
             " testDarken");
     ImageProcessorController con = new ImageProcessorControllerImpl(mockMod, viewTest, input);
     con.promptImageCommands();
-    assertEquals("Set image path is -> res/TestPPM.ppm\n" +
+    assertEquals("Set image path is -> images/TestPPM.ppm\n" +
             "Saved fileName is -> test\n" +
             "Image is saved as test\n", log.toString());
   }
