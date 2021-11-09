@@ -61,7 +61,13 @@ public class ImageProcessorTextView implements ImageProcessorView {
       out.append("brighten <increment> <image-name> <dest-image-name> -> brightens" +
               " image by specified increment.\n");
       out.append("darken <increment> <image-name> <dest-image-name> -> darkens" +
-              " image by specified increment.\n\n");
+              " image by specified increment.\n");
+      out.append("sharpen <image-name> <dest-image-name> -> produces sharpened image\n");
+      out.append("blur <image-name> <dest-image-name> -> produces blurred image\n");
+      out.append("greyscale <image-name> <dest-image-name> -> produces image with greyscale" +
+              " filter applied\n");
+      out.append("sepia <image-name> <dest-image-name> -> produces image with sepia " +
+              "filter applied\n");
     } catch (IOException e) {
       e.printStackTrace();
       throw new IllegalStateException("Transmission to view failed.");

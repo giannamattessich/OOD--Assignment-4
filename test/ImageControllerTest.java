@@ -58,7 +58,7 @@ public class ImageControllerTest {
             "Image koala successfully saved to file res/koala.ppm!"));
   }
 
-  @Test
+  @Test (expected = IllegalArgumentException.class)
   public void saveImageBadPath() {
     Readable input = new StringReader("load res/TestPPM.ppm test " +
             "save res/test.phe test");
@@ -97,7 +97,11 @@ public class ImageControllerTest {
             "brighten <increment> <image-name> <dest-image-name> -> brightens image by " +
             "specified increment.\n" +
             "darken <increment> <image-name> <dest-image-name> -> darkens image by " +
-            "specified increment.\n\nFile test successfully loaded!\n", out.toString());
+            "specified increment.\nsharpen <image-name> <dest-image-name> -> " +
+            "produces sharpened image\nblur <image-name> <dest-image-name> -> produces blurred" +
+            " image\ngreyscale <image-name> <dest-image-name> -> produces image with greyscale " +
+            "filter applied\nsepia <image-name> <dest-image-name> -> produces image with sepia " +
+            "filter applied\nFile test successfully loaded!\n", out.toString());
   }
 
   @Test
@@ -234,6 +238,68 @@ public class ImageControllerTest {
             "Creating a transformed image of -> test\n" +
             "Saved fileName is -> testDarken\n" +
             "Image is saved as testDarken\n", log.toString());
+  }
+
+  @Test
+  public void testGreyscaleImg() {
+    Readable input = new StringReader("load res/TestPPM.ppm test greyscale test testGreyscale " +
+            "horizontal-flip testGreyscale testGreyscaleHor");
+    ImageProcessorController con = new ImageProcessorControllerImpl(mockMod, viewTest, input);
+    con.promptImageCommands();
+    assertEquals("Set image path is -> res/TestPPM.ppm\n" +
+            "Saved fileName is -> test\n" +
+            "Image is saved as test\n" +
+            "Creating a transformed image of -> test\n" +
+            "Saved fileName is -> testGreyscale\n" +
+            "Image is saved as testGreyscale\n" +
+            "Creating a transformed image of -> testGreyscale\n" +
+            "Saved fileName is -> testGreyscaleHor\n" +
+            "Image is saved as testGreyscaleHor\n", log.toString());
+  }
+
+  @Test
+  public void testSepiaImg() {
+    Readable input = new StringReader("load res/TestPPM.ppm test sepia test testSepia");
+    ImageProcessorController con = new ImageProcessorControllerImpl(mockMod, viewTest, input);
+    con.promptImageCommands();
+    assertEquals("Set image path is -> res/TestPPM.ppm\n" +
+            "Saved fileName is -> test\n" +
+            "Image is saved as test\n" +
+            "Creating a transformed image of -> test\n" +
+            "Saved fileName is -> testSepia\n" +
+            "Image is saved as testSepia\n", log.toString());
+  }
+
+  @Test
+  public void testBlurImg() {
+    Readable input = new StringReader("load res/TestPPM.ppm test blur test testBlur blur " +
+            "testBlur testBlur2 blur testBlur2 testBlur3");
+    ImageProcessorController con = new ImageProcessorControllerImpl(mockMod, viewTest, input);
+    con.promptImageCommands();
+    assertEquals("Set image path is -> res/TestPPM.ppm\n" +
+            "Saved fileName is -> test\nImage is saved as test\n" +
+            "Creating a transformed image of -> test\nSaved fileName is -> testBlur\n" +
+            "Image is saved as testBlur\nCreating a transformed image of -> testBlur\n" +
+            "Saved fileName is -> testBlur2\nImage is saved as testBlur2\n" +
+            "Creating a transformed image of -> testBlur2\nSaved fileName is -> testBlur3\n" +
+            "Image is saved as testBlur3\n", log.toString());
+  }
+
+  @Test
+  public void testSharpen() {
+    Readable input = new StringReader("load res/TestPPM.ppm test sharpen test testSharpen" +
+            " red-component testSharpen testSharpenRed");
+    ImageProcessorController con = new ImageProcessorControllerImpl(mockMod, viewTest, input);
+    con.promptImageCommands();
+    assertEquals("Set image path is -> res/TestPPM.ppm\n" +
+            "Saved fileName is -> test\n" +
+            "Image is saved as test\n" +
+            "Creating a transformed image of -> test\n" +
+            "Saved fileName is -> testSharpen\n" +
+            "Image is saved as testSharpen\n" +
+            "Creating a transformed image of -> testSharpen\n" +
+            "Saved fileName is -> testSharpenRed\n" +
+            "Image is saved as testSharpenRed\n", log.toString());
   }
 
   @Test

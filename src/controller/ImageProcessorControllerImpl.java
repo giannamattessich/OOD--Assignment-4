@@ -6,6 +6,10 @@ import java.util.Scanner;
 
 import model.Image;
 import model.ImageProcessorModel;
+import model.imagetransformations.colortransformations.GreyScale;
+import model.imagetransformations.colortransformations.Sepia;
+import model.imagetransformations.filters.BlurFilter;
+import model.imagetransformations.filters.SharpenFilter;
 import model.imagetransformations.greyscaletransformation.BlueGreyScale;
 import model.imagetransformations.greyscaletransformation.GreenGreyScale;
 import model.imagetransformations.greyscaletransformation.IntensityGreyScale;
@@ -61,7 +65,7 @@ public class ImageProcessorControllerImpl implements ImageProcessorController {
         case "load":
           String loadFilePath = sc.next();
           String loadFileName = sc.next();
-          promptLoadPPM(loadFilePath, loadFileName);
+          promptLoadImage(loadFilePath, loadFileName);
           break;
         case "red-component":
           String rFileName = sc.next();
@@ -139,10 +143,42 @@ public class ImageProcessorControllerImpl implements ImageProcessorController {
           includeTryCatchMessage("Darkened image " + dFileDest +
                   " successfully created!");
           break;
+        case "sharpen":
+          String sFileName = sc.next();
+          String sFileDest = sc.next();
+          Image sNewImage = this.model.getNewImage(sFileName, new SharpenFilter());
+          this.model.addFile(sFileDest, sNewImage);
+          includeTryCatchMessage("Sharpened image " + sFileDest +
+                  " successfully created!");
+          break;
+        case "blur":
+          String blFileName = sc.next();
+          String blFileDest = sc.next();
+          Image blNewImage = this.model.getNewImage(blFileName, new BlurFilter());
+          this.model.addFile(blFileDest, blNewImage);
+          includeTryCatchMessage("Blurred image " + blFileDest +
+                  " successfully created!");
+          break;
+        case "greyscale":
+          String grFileName = sc.next();
+          String grFileDest = sc.next();
+          Image grNewImage = this.model.getNewImage(grFileName, new GreyScale());
+          this.model.addFile(grFileDest, grNewImage);
+          includeTryCatchMessage("Greyscale image " + grFileDest +
+                  " successfully created!");
+          break;
+        case "sepia":
+          String seFileName = sc.next();
+          String seFileDest = sc.next();
+          Image seNewImage = this.model.getNewImage(seFileName, new Sepia());
+          this.model.addFile(seFileDest, seNewImage);
+          includeTryCatchMessage("Sepia image " + seFileDest +
+                  " successfully created!");
+          break;
         case "save":
           String saveImagePath = sc.next();
           String saveImageName = sc.next();
-          promptSavePPM(saveImagePath, saveImageName);
+          promptSaveImage(saveImagePath, saveImageName);
           break;
         default:
           includeTryCatchMessage("This command does not exist.");
@@ -168,15 +204,17 @@ public class ImageProcessorControllerImpl implements ImageProcessorController {
    * @param filePath file-path of image to be loaded.
    * @param fileName file-name used to reference this image.
    */
-  private void promptLoadPPM(String filePath, String fileName) {
+  private void promptLoadImage(String filePath, String fileName) {
     File temp = new File(filePath);
-    if ((temp.exists()) && (filePath.endsWith("ppm"))) {
+    if ((temp.exists()) && ((filePath.endsWith("ppm")) || (filePath.endsWith("png")) ||
+            (filePath.endsWith("jpeg")) || (filePath.endsWith("jpg"))
+            || (filePath.endsWith("bmp")))) {
       this.model.setImagePath(filePath);
-      this.model.addFile(fileName, ImageUtil.readPPM(filePath));
+      this.model.addFile(fileName, ImageUtil.readImageFile(filePath));
       includeTryCatchMessage("File " + fileName + " successfully loaded!");
     } else if (!temp.exists()) {
-      includeTryCatchMessage("File " + fileName + " cannot be loaded because file-path" +
-              filePath + "does not exist.");
+      includeTryCatchMessage("File " + fileName + " cannot be loaded because file-path " +
+              filePath + " does not exist.");
     }
   }
 
@@ -186,10 +224,10 @@ public class ImageProcessorControllerImpl implements ImageProcessorController {
    * @param filePath file-path to be saved to.
    * @param fileName file-name of image to be saved.
    */
-  private void promptSavePPM(String filePath, String fileName) {
-    if ((filePath.contains(fileName)) && (filePath.endsWith("ppm"))) {
+  private void promptSaveImage(String filePath, String fileName) {
+    if (filePath.contains(fileName)) {
       Image savedImg = model.getImage(fileName);
-      ImageUtil.writePPMFile(filePath, savedImg);
+      ImageUtil.writeImageFile(filePath, savedImg);
       includeTryCatchMessage("Image " + fileName + " successfully saved to file "
               + filePath + "!");
     } else {

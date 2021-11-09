@@ -99,3 +99,43 @@ darken 100 test testDark
 *image-path must end in a valid file format and include the image-name
 
 save res/testDark.ppm testDark
+
+*CREATES SHARPENED IMAGE, PROVIDE image-name and new image-name for the image that is transformed
+
+sharpen test testSharpen
+
+*SAVES SHARPENED IMAGE, PROVIDE image-path and image-name
+*image-path must end in a valid file format and include the image-name
+
+save res/testSharpen.png testSharpen
+
+*CREATES BLURRED IMAGE, PROVIDE image-name and new image-name for the image that is transformed
+
+blur test testBlur
+
+*SAVES BLURRED IMAGE, PROVIDE image-path and image-name
+*image-path must end in a valid file format and include the image-name
+
+save res/testBlur.bmp testSharpen
+
+*CREATES IMAGE WITH GREYSCALE FILTER APPLIED, PROVIDE image-name and new image-name for the image
+that is transformed
+
+greyscale test testGreyScale
+
+*SAVES GREYSCALE IMAGE, PROVIDE image-path and image-name
+*image-path must end in a valid file format and include the image-name
+
+save res/testGreyScale.png testGreyScale
+
+*CREATES IMAGE WITH SEPIA FILTER APPLIED, PROVIDE image-name and new image-name for the image
+that is transformed
+
+sepia test testSepia
+
+*SAVES SEPIA IMAGE, PROVIDE image-path and image-name
+*image-path must end in a valid file format and include the image-name
+
+save res/testSepia.png testSepia
+
+

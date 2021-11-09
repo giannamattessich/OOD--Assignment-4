@@ -72,6 +72,10 @@ public class ImageViewTest {
             "vertical-flip <image-name> <dest-image-name> -> flips image vertically\n" +
             "brighten <increment> <image-name> <dest-image-name> -> brightens image by " +
             "specified increment.\ndarken <increment> <image-name> <dest-image-name> -> " +
-            "darkens image by specified increment.\n\n", ap.toString());
+            "darkens image by specified increment.\nsharpen <image-name> <dest-image-name> -> " +
+            "produces sharpened image\nblur <image-name> <dest-image-name> -> " +
+            "produces blurred image\ngreyscale <image-name> <dest-image-name> -> " +
+            "produces image with greyscale filter applied\nsepia <image-name> <dest-image-name> " +
+            "-> produces image with sepia filter applied\n", ap.toString());
   }
 }

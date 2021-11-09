@@ -3,7 +3,7 @@ import org.junit.Test;
 import model.Image;
 import model.ImageProcessorModel;
 import model.ImageProcessorModelImpl;
-import model.imagetransformations.colortransformation.RedGreyScale;
+import model.imagetransformations.greyscaletransformation.RedGreyScale;
 import utils.ImageUtil;
 
 import static org.junit.Assert.assertEquals;

@@ -9,7 +9,7 @@ public class GreyScale extends AbstractColorTransformation {
    * Constructor for a greyscale color transformation.
    */
   public GreyScale() {
-    super(initColorMat());
+    super();
   }
 
   /**
@@ -17,7 +17,8 @@ public class GreyScale extends AbstractColorTransformation {
    *
    * @return greyscale color matrix.
    */
-  private static double[][] initColorMat() {
+  @Override
+  protected double[][] initColorMat() {
     double[][] colorMat = new double[3][3];
     for (int i = 0; i < 3; i++) {
       for (int j = 0; j < 3; j++) {

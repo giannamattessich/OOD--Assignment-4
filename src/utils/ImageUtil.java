@@ -9,9 +9,7 @@ import java.util.Objects;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.io.FileInputStream;
-
 import javax.imageio.ImageIO;
-
 import model.Image;
 import model.ImageModel;
 import model.Pixel;
@@ -128,12 +126,12 @@ public class ImageUtil {
         BufferedImage bImg = ImageIO.read(imgFile);
         Pixel[][] pixelMatrix = new Pixel[bImg.getHeight()][bImg.getWidth()];
 
-        for (int i = 0; i < bImg.getHeight(); i++) {
-          for (int j = 0; j < bImg.getWidth(); j++) {
-            Color pixelColor = new Color(bImg.getRGB(i, j));
+        for (int coordy = 0; coordy < bImg.getHeight(); coordy++) {
+          for (int coordx = 0; coordx < bImg.getWidth(); coordx++) {
+            Color pixelColor = new Color(bImg.getRGB(coordx, coordy));
             Pixel setPixel = new
                     Pixel(pixelColor.getRed(), pixelColor.getGreen(), pixelColor.getBlue());
-            pixelMatrix[i][j] = setPixel;
+            pixelMatrix[coordy][coordx] = setPixel;
           }
         }
         output.setImagePixels(pixelMatrix);
@@ -156,13 +154,13 @@ public class ImageUtil {
   public static BufferedImage convertImage(Image image) {
     BufferedImage bImg = new BufferedImage(image.getWidth(), image.getHeight(),
             BufferedImage.TYPE_INT_RGB);
-    for (int i = 0; i < bImg.getHeight(); i++) {
-      for (int j = 0; j < bImg.getWidth(); j++) {
-        int red = image.getPixelAt(i, j).getRed();
-        int green = image.getPixelAt(i, j).getGreen();
-        int blue = image.getPixelAt(i, j).getBlue();
+    for (int height = 0; height < image.getHeight(); height++) {
+      for (int width = 0; width < image.getWidth(); width++) {
+        int red = image.getPixelAt(height, width).getRed();
+        int green = image.getPixelAt(height, width).getGreen();
+        int blue = image.getPixelAt(height, width).getBlue();
         Color c = new Color(red, green, blue);
-        bImg.setRGB(i, j, c.getRGB());
+        bImg.setRGB(width, height, c.getRGB());
       }
     }
     return bImg;

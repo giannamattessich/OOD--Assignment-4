@@ -4,9 +4,9 @@ import java.util.Arrays;
 
 import model.Image;
 import model.ImageModel;
-import model.imagetransformations.colortransformation.BlueGreyScale;
-import model.imagetransformations.colortransformation.GreenGreyScale;
-import model.imagetransformations.colortransformation.RedGreyScale;
+import model.imagetransformations.greyscaletransformation.BlueGreyScale;
+import model.imagetransformations.greyscaletransformation.GreenGreyScale;
+import model.imagetransformations.greyscaletransformation.RedGreyScale;
 import model.imagetransformations.fliptransformation.VerticalFlip;
 import model.Pixel;
 

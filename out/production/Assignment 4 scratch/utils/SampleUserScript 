@@ -1,0 +1,141 @@
+*LOADS RAW PPM from image file-path and gives name to be referenced later
+-in this case, image path is res/TestPPM.ppm and image name is test -> this image
+name is referenced later on in the program to apply transformations to this image and create
+new images
+
+load res/TestPPM.ppm test
+
+*CREATES RED GREYSCALE, PROVIDE image-name and new image-name for the image that is transformed
+
+red-component test testRed
+
+*SAVES RED GREYSCALE, PROVIDE image-path and image-name
+*image-path must end in a valid file format and include the image-name
+
+save res/testRed.ppm testRed
+
+*CREATES GREEN GREYSCALE, PROVIDE image-name and new image-name for the image that is transformed
+
+green-component test testGreen
+
+*SAVES GREEN GREYSCALE, PROVIDE image-path and image-name
+*image-path must end in a valid file format and include the image-name
+
+save res/testGreen.ppm testGreen
+
+*CREATES BLUE GREYSCALE, PROVIDE image-name and new image-name for the image that is transformed
+
+blue-component test testBlue
+
+*SAVES BLUE GREYSCALE, PROVIDE image-path and image-name
+*image-path must end in a valid file format and include the image-name
+
+save res/testBlue.ppm testBlue
+
+*CREATES VALUE GREYSCALE, PROVIDE image-name and new image-name for the image that is transformed
+
+value-component test testValue
+
+*SAVES VALUE GREYSCALE, PROVIDE image-path and image-name
+*image-path must end in a valid file format and include the image-name
+
+save res/testValue.ppm testValue
+
+*CREATES INTENSITY GREYSCALE, PROVIDE image-name and new image-name for the
+image that is transformed
+
+intensity-component test testIntensity
+
+*SAVES INTENSITY GREYSCALE, PROVIDE image-path and image-name
+*image-path must end in a valid file format and include the image-name
+
+save res/testIntensity.ppm testIntensity
+
+*CREATES LUMA GREYSCALE, PROVIDE image-name and new image-name for the image that is transformed
+
+luma-component test testLuma
+
+*SAVES LUMA GREYSCALE, PROVIDE image-path and image-name
+*image-path must end in a valid file format and include the image-name
+
+save res/testLuma.ppm testLuma
+
+*CREATES VERTICALLY FLIPPED IMAGE, PROVIDE image-name and new image-name for the image
+that is transformed
+
+vertical-flip test testVF
+
+*SAVES VERTICALLY FLIPPED IMAGE, PROVIDE image-path and image-name
+*image-path must end in a valid file format and include the image-name
+
+save res/testVF.ppm testVF
+
+*CREATES HORIZONTALLY FLIPPED IMAGE, PROVIDE image-name and new image-name for the image
+that is transformed
+
+horizontal-flip test testHF
+
+*SAVES HORIZONTALLY FLIPPED IMAGE, PROVIDE image-path and image-name
+*image-path must end in a valid file format and include the image-name
+
+save res/testHF.ppm testHF
+
+*CREATES BRIGHTENED IMAGE, PROVIDE increment to be brightened by, image-name, and new image-name
+for the image that is transformed
+
+brighten 10 test testBright
+
+*SAVES BRIGHTENED IMAGE, PROVIDE image-path and image-name
+*image-path must end in a valid file format and include the image-name
+
+save res/testBright.ppm testBright
+
+*CREATES DARKENED IMAGE, PROVIDE increment to be darkened by, image-name, and new image-name
+for the image that is transformed
+
+darken 100 test testDark
+
+*SAVES DARKENED IMAGE, PROVIDE image-path and image-name
+*image-path must end in a valid file format and include the image-name
+
+save res/testDark.ppm testDark
+
+*CREATES SHARPENED IMAGE, PROVIDE image-name and new image-name for the image that is transformed
+
+sharpen test testSharpen
+
+*SAVES SHARPENED IMAGE, PROVIDE image-path and image-name
+*image-path must end in a valid file format and include the image-name
+
+save res/testSharpen.png testSharpen
+
+*CREATES BLURRED IMAGE, PROVIDE image-name and new image-name for the image that is transformed
+
+blur test testBlur
+
+*SAVES BLURRED IMAGE, PROVIDE image-path and image-name
+*image-path must end in a valid file format and include the image-name
+
+save res/testBlur.bmp testSharpen
+
+*CREATES IMAGE WITH GREYSCALE FILTER APPLIED, PROVIDE image-name and new image-name for the image
+that is transformed
+
+greyscale test testGreyScale
+
+*SAVES GREYSCALE IMAGE, PROVIDE image-path and image-name
+*image-path must end in a valid file format and include the image-name
+
+save res/testGreyScale.png testGreyScale
+
+*CREATES IMAGE WITH SEPIA FILTER APPLIED, PROVIDE image-name and new image-name for the image
+that is transformed
+
+sepia test testSepia
+
+*SAVES SEPIA IMAGE, PROVIDE image-path and image-name
+*image-path must end in a valid file format and include the image-name
+
+save res/testSepia.png testSepia
+
+

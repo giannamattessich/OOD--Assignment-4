@@ -30,6 +30,7 @@ public class Pixel {
 
   /**
    * Method to get red component of pixel.
+   *
    * @return red component.
    */
   public int getRed() {
@@ -38,6 +39,7 @@ public class Pixel {
 
   /**
    * Method to get green component of pixel.
+   *
    * @return green component.
    */
   public int getGreen() {
@@ -46,6 +48,7 @@ public class Pixel {
 
   /**
    * Method to get blue component of pixel.
+   *
    * @return blue component.
    */
   public int getBlue() {
@@ -54,6 +57,7 @@ public class Pixel {
 
   /**
    * Method to set red component of pixel.
+   *
    * @param red represents new red component value.
    * @throws IllegalArgumentException if new red value is less than 0 or greater than 255.
    */
@@ -67,6 +71,7 @@ public class Pixel {
 
   /**
    * Method to set green component of pixel.
+   *
    * @param green represents new red component value.
    * @throws IllegalArgumentException if new green value is less than 0 or greater than 255.
    */
@@ -80,6 +85,7 @@ public class Pixel {
 
   /**
    * Method to set blue component of pixel.
+   *
    * @param blue represents new blue component value.
    * @throws IllegalArgumentException if new blue value is less than 0 or greater than 255.
    */
@@ -153,24 +159,9 @@ public class Pixel {
     int newRed = this.red + amount;
     int newGreen = this.green + amount;
     int newBlue = this.blue + amount;
-    if (newRed > 255) {
-      newRed = 255;
-    }
-    if (newGreen > 255) {
-      newGreen = 255;
-    }
-    if (newBlue > 255) {
-      newBlue = 255;
-    }
-    if (newRed < 0) {
-      newRed = 0;
-    }
-    if (newGreen < 0) {
-      newGreen = 0;
-    }
-    if (newBlue < 0) {
-      newBlue = 0;
-    }
+    newRed = Math.min(255, Math.max(0, newRed));
+    newGreen = Math.min(255, Math.max(0, newGreen));
+    newBlue = Math.min(255, Math.max(0, newBlue));
     return new Pixel(newRed, newGreen, newBlue);
   }
 }

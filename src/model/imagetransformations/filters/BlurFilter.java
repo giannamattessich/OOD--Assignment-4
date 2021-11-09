@@ -1,8 +1,5 @@
 package model.imagetransformations.filters;
 
-import model.Image;
-import model.Pixel;
-
 /**
  * Class to represent blur filter on an image.
  */
@@ -12,7 +9,7 @@ public class BlurFilter extends AbstractFilterTransformations {
    * Constructor for blur filter transformation.
    */
   public BlurFilter() {
-    super(initKernel());
+    super();
   }
 
   /**
@@ -20,7 +17,8 @@ public class BlurFilter extends AbstractFilterTransformations {
    *
    * @return kernel of blur filter.
    */
-  private static double[][] initKernel() {
+  @Override
+  protected double[][] initKernel() {
     double[][] blurKernel = new double[3][3];
     for (int i = 0; i < 3; i++) {
       for (int j = 0; j < 3; j++) {

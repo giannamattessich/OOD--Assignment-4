@@ -2,6 +2,7 @@ package model.imagetransformations.lighttransformation;
 
 import model.Image;
 import model.ImageModel;
+import model.Pixel;
 import model.imagetransformations.ImageProcessor;
 
 /**
@@ -14,7 +15,7 @@ public abstract class AbstractLight implements LightTransformations {
   protected int increment;
   protected lightTypes type;
 
-  enum lightTypes { brighten, darken }
+  enum lightTypes {brighten, darken}
 
   /**
    * Abstract constructor for a light transformation.
@@ -37,14 +38,27 @@ public abstract class AbstractLight implements LightTransformations {
     if (type == lightTypes.brighten) {
       for (int i = 0; i < givenHeight; i++) {
         for (int j = 0; j < givenWidth; j++) {
-          resultImage.getImagePixels()[i][j] = resultImage.getPixelAt(i, j).brighten(increment);
+          Pixel pix = resultImage.getPixelAt(i, j).brighten(increment);
+          int red = pix.getRed();
+          int green = pix.getGreen();
+          int blue = pix.getBlue();
+          red = Math.min(255, red);
+          green = Math.min(255, green);
+          blue = Math.min(255, blue);
+          resultImage.setPixelAt(i, j, red, green, blue);
         }
       }
     } else if (type == lightTypes.darken) {
       for (int i = 0; i < givenHeight; i++) {
         for (int j = 0; j < givenWidth; j++) {
-          resultImage.getImagePixels()[i][j] = resultImage.getPixelAt(i, j)
-                  .brighten(increment * -1);
+          Pixel pix = resultImage.getPixelAt(i, j).brighten(increment * -1);
+          int red = pix.getRed();
+          int green = pix.getGreen();
+          int blue = pix.getBlue();
+          red = Math.min(255, red);
+          green = Math.min(255, green);
+          blue = Math.min(255, blue);
+          resultImage.setPixelAt(i, j, red, green, blue);
         }
       }
     }

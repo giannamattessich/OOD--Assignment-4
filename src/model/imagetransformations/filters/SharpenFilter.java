@@ -9,7 +9,7 @@ public class SharpenFilter extends AbstractFilterTransformations {
    * Constructor for sharpen filter transformation.
    */
   public SharpenFilter() {
-    super(initKernel());
+    super();
   }
 
   /**
@@ -17,7 +17,8 @@ public class SharpenFilter extends AbstractFilterTransformations {
    *
    * @return kernel of sharpen filter.
    */
-  private static double[][] initKernel() {
+  @Override
+  protected double[][] initKernel() {
     double[][] sharpenKernel = new double[5][5];
     for (int i = 0; i < 5; i++) {
       for (int j = 0; j < 5; j++) {

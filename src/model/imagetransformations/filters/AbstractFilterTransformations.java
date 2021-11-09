@@ -1,5 +1,7 @@
 package model.imagetransformations.filters;
 
+import java.util.ArrayList;
+
 import model.Image;
 import model.ImageModel;
 import model.Pixel;
@@ -12,12 +14,17 @@ public abstract class AbstractFilterTransformations implements FilterTransformat
 
   /**
    * Constructor for an abstract filter transformation.
-   *
-   * @param kernel distinct filter kernel of filter type.
    */
-  public AbstractFilterTransformations(double[][] kernel) {
-    this.kernel = kernel;
+  public AbstractFilterTransformations() {
+    this.kernel = initKernel();
   }
+
+  /**
+   * Initializes kernel in concrete classes.
+   *
+   * @return kernel of filter.
+   */
+  protected abstract double[][] initKernel();
 
   /**
    * Retrieves the kernel value at given row and column position.
@@ -53,20 +60,22 @@ public abstract class AbstractFilterTransformations implements FilterTransformat
    * @return matrix representing pixels that are taken into account when finding the RGB
    * value of a filtered pixel.
    */
-  protected Pixel[][] getOverlap(int row, int col, Image img) {
-    Pixel[][] overlap = new Pixel[getKernelHeight()][getKernelWidth()];
+  protected ArrayList<ArrayList<Pixel>> multiplyKernel(int row, int col, Image img) {
     int kernMid = getKernelHeight() / 2;
-    for (int i = (row - (kernMid - 1)); i < (row + kernMid); i++) {
-      for (int j = (col - (kernMid - 1)); j < (col + kernMid); j++) {
+    ArrayList<ArrayList<Pixel>> kernOverlap = new ArrayList<ArrayList<Pixel>>();
+    for (int i = (row - kernMid); i < (row + (kernMid + 1)); i++) {
+      ArrayList<Pixel> width = new ArrayList<>();
+      for (int j = (col - kernMid); j < (col + (kernMid + 1)); j++) {
         try {
-          overlap[i][j] = img.getPixelAt(i, j);
-        } catch (ArrayIndexOutOfBoundsException e) {
-          overlap[i][j] = new Pixel(0, 0, 0);
+          width.add(img.getPixelAt(row, col));
+        } catch (IndexOutOfBoundsException e) {
+          width.add(new Pixel(0, 0, 0));
           continue;
         }
+        kernOverlap.add(width);
       }
     }
-    return overlap;
+    return kernOverlap;
   }
 
   /**
@@ -82,17 +91,16 @@ public abstract class AbstractFilterTransformations implements FilterTransformat
     int newBlue = 0;
     for (int i = 0; i < kernel.length; i++) {
       for (int j = 0; j < kernel[0].length; j++) {
-        newRed += (int) (((double) getOverlap(i, j, img)[i][j].getRed()) * getKernelAt(i, j));
-        newGreen += (int) (((double) getOverlap(i, j, img)[i][j].getGreen()) * getKernelAt(i, j));
-        newBlue += (int) (((double) getOverlap(i, j, img)[i][j].getBlue()) * getKernelAt(i, j));
+        newRed += ((multiplyKernel(row, col, img).get(i).get(j).getRed())
+                * (getKernelAt(i, j)));
+        newGreen += ((multiplyKernel(row, col, img).get(i).get(j).getGreen())
+                * (getKernelAt(i, j)));
+        newBlue += ((multiplyKernel(row, col, img).get(i).get(j).getBlue())
+                * (getKernelAt(i, j)));
 
-        if (newRed > 255) {
-          newRed = 255;
-        } else if (newGreen > 255) {
-          newGreen = 255;
-        } else if (newBlue > 255) {
-          newBlue = 255;
-        }
+        newRed = Math.min(255, newRed);
+        newGreen = Math.min(255, newGreen);
+        newBlue = Math.min(255, newBlue);
       }
     }
     img.setPixelAt(row, col, newRed, newGreen, newBlue);
@@ -107,7 +115,7 @@ public abstract class AbstractFilterTransformations implements FilterTransformat
         try {
           applyFilter(i, j, filteredImg);
         } catch (ArrayIndexOutOfBoundsException e) {
-          break;
+          continue;
         }
       }
     }

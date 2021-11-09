@@ -22,7 +22,10 @@ public class ImageModel implements Image {
 
   @Override
   public Pixel getPixelAt(int row, int col) {
-    return this.imagePixels[row][col];
+    int red = this.imagePixels[row][col].getRed();
+    int green = this.imagePixels[row][col].getGreen();
+    int blue = this.imagePixels[row][col].getBlue();
+    return new Pixel(red, green, blue);
   }
 
   @Override
@@ -41,7 +44,13 @@ public class ImageModel implements Image {
 
   @Override
   public Pixel[][] getImagePixels() {
-    return this.imagePixels;
+    Pixel[][] result = new Pixel[getHeight()][getWidth()];
+    for (int i = 0; i < getHeight(); i++) {
+      for (int j = 0; j < getWidth(); j++) {
+        result[i][j] = this.imagePixels[i][j];
+      }
+    }
+    return result;
   }
 
   @Override

@@ -32,23 +32,33 @@ public abstract class AbstractFlip implements FlipTransformations {
     int givenWidth = orgImage.getWidth();
     flipTypes type = this.type;
     if (type == flipTypes.vertical) {
-      for (int i = 0; i < givenHeight; i++) {
+      for (int i = 0; i < givenHeight/2; i++) {
         for (int j = 0; j < givenWidth; j++) {
-          Pixel flippedVertPixel = resultImage.getPixelAt(j, ((givenHeight - 1) - i));
-          int flippedVerRed = flippedVertPixel.getRed();
-          int flippedVerGreen = flippedVertPixel.getGreen();
-          int flippedVerBlue = flippedVertPixel.getBlue();
-          resultImage.setPixelAt(i, j, flippedVerRed, flippedVerGreen, flippedVerBlue);
+          Image result = new ImageModel(orgImage.getImagePixels());
+          Pixel temp = result.getPixelAt(i, j);
+          int red = result.getPixelAt((givenHeight - i - 1), j).getRed();
+          int green = result.getPixelAt((givenHeight - i - 1), j).getGreen();
+          int blue = result.getPixelAt((givenHeight - i - 1), j).getBlue();
+          result.setPixelAt(i, j, red, green, blue);
+          int tempRed = temp.getRed();
+          int tempGreen = temp.getGreen();
+          int tempBlue = temp.getBlue();
+          result.setPixelAt((givenHeight - i - 1), j, tempRed, tempGreen, tempBlue);
         }
       }
     } else if (type == flipTypes.horizontal) {
       for (int i = 0; i < givenHeight; i++) {
-        for (int j = 0; j < givenWidth; j++) {
-          Pixel flippedHorPixel = resultImage.getPixelAt(((givenWidth - 1) - j), i);
-          int flippedHorRed = flippedHorPixel.getRed();
-          int flippedHorGreen = flippedHorPixel.getGreen();
-          int flippedHorBlue = flippedHorPixel.getBlue();
-          resultImage.setPixelAt(i, j, flippedHorRed, flippedHorGreen, flippedHorBlue);
+        for (int j = 0; j < givenWidth/2; j++) {
+          Image result1 = new ImageModel(orgImage.getImagePixels());
+          Pixel temp = result1.getPixelAt(i, j);
+          int red = result1.getPixelAt(i, (givenWidth - j - 1)).getRed();
+          int green = result1.getPixelAt(i, (givenWidth - j - 1)).getGreen();
+          int blue = result1.getPixelAt(i, (givenWidth - j - 1)).getBlue();
+          result1.setPixelAt(i, j, red, green, blue);
+          int tempRed = temp.getRed();
+          int tempGreen = temp.getGreen();
+          int tempBlue = temp.getBlue();
+          result1.setPixelAt(i, (givenWidth - j - 1), tempRed, tempGreen, tempBlue);
         }
       }
     }
