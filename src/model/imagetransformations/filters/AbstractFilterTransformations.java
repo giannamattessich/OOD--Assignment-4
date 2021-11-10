@@ -91,7 +91,8 @@ public abstract class AbstractFilterTransformations implements FilterTransformat
     for (int i = 0; i < kernel.length; i++) {
       for (int j = 0; j < kernel[0].length; j++) {
         newRed += ((multiplyKernel(row, col, img).get(i).get(j).getRed()) * (getKernelAt(i, j)));
-        double additionToGreen = ((multiplyKernel(row, col, img).get(i).get(j).getGreen()) * (getKernelAt(i, j)));
+        double additionToGreen = (multiplyKernel(row, col, img).get(i).get(j).getGreen());
+        additionToGreen = additionToGreen *  (getKernelAt(i, j));
         newGreen += additionToGreen;
         newBlue += ((multiplyKernel(row, col, img).get(i).get(j).getBlue()) * (getKernelAt(i, j)));
 

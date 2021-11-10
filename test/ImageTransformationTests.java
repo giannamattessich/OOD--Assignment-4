@@ -225,15 +225,12 @@ public class ImageTransformationTests {
       Image redImg = img.changeImage(new SharpenFilter());
       for (int i = 0; i < pixels.length; i++) {
         for (int j = 0; j < pixels[0].length; j++) {
-          //make the above statement shorter
           assertEquals(redImg.getPixelAt(i, j).getRed(), pixels[i][j].getRed());
         }
       }
-      assert(true);
     }
     catch (Exception e) {
       System.out.println(e.getMessage());
-      assert(false);
     }
     
   }
