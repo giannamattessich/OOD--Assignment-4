@@ -210,25 +210,32 @@ public class ImageTransformationTests {
 
   @Test
   public void testPixels() {
-    Pixel[][] pixels = {
-      {
-        new Pixel(181, 39, 34), new Pixel(181, 88, 34), new Pixel(204, 167, 20)
-      },
-      {
-        new Pixel(24, 201, 39),
-        new Pixel(22, 148, 201),
-        new Pixel(79, 24, 199)
+    try {
+      Pixel[][] pixels = {
+        {
+          new Pixel(181, 39, 34), new Pixel(181, 88, 34), new Pixel(204, 167, 20)
+        },
+        {
+          new Pixel(24, 201, 39),
+          new Pixel(22, 148, 201),
+          new Pixel(79, 24, 199)
+        }
+      };
+      Image img = new ImageModel(pixels);
+      Image redImg = img.changeImage(new SharpenFilter());
+      for (int i = 0; i < pixels.length; i++) {
+        for (int j = 0; j < pixels[0].length; j++) {
+          //make the above statement shorter
+          assertEquals(redImg.getPixelAt(i, j).getRed(), pixels[i][j].getRed());
+        }
       }
-    };
-    Image img = new ImageModel(pixels);
-    Image redImg = img.changeImage(new SharpenFilter());
-    for (int i = 0; i < pixels.length; i++) {
-      for (int j = 0; j < pixels[0].length; j++) {
-        System.out.print("Pixel at " + i + ", " + j + ": " + "Pixel(" + redImg.getPixelAt(i, j).getRed() + ", " +
-          redImg.getPixelAt(i, j).getGreen() + ", " + redImg.getPixelAt(i, j).getBlue() + ")" +
-          System.lineSeparator());
-      }
+      assert(true);
     }
+    catch (Exception e) {
+      System.out.println(e.getMessage());
+      assert(false);
+    }
+    
   }
 
   @Test

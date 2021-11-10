@@ -30,9 +30,10 @@ public interface Image {
 
   /**
    * Sets Pixels of image.
+   * 
    * @param pixels pixels for this image to be set to.
    */
- void setImagePixels(Pixel[][] pixels);
+  void setImagePixels(Pixel[][] pixels);
 
   /**
    * Gets Pixels of image.
@@ -40,7 +41,6 @@ public interface Image {
    * @return pixels of image;
    */
   Pixel[][] getImagePixels();
-
 
   /**
    * Gets width of image.
@@ -57,8 +57,8 @@ public interface Image {
   int getHeight();
 
   /**
-   * Applies specified ImageProcessor transformation on this image and returns new image
-   * with transformation applied.
+   * Applies specified ImageProcessor transformation on this image and returns new
+   * image with transformation applied.
    *
    * @param cmd transformation to be applied.
    * @return image with transformation applied.
@@ -72,4 +72,3 @@ public interface Image {
   public int hashCode();
 
 }
-
