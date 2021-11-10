@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import model.Image;
 import model.ImageProcessorModel;
-import model.imagetransformations.ImageProcessor;
+import model.ImageTransformations.ImageProcessor;
 
 /**
  * Class to represent mock ImageProcessorModel.

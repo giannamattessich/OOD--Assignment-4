@@ -1,4 +1,4 @@
-package model.imagetransformations.fliptransformation;
+package model.ImageTransformations.fliptransformation;
 
 /**
  * Class to represent a horizontal flip transformation.

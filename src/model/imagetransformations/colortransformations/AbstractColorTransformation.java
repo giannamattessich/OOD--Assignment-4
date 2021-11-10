@@ -1,4 +1,4 @@
-package model.imagetransformations.colortransformations;
+package model.ImageTransformations.colortransformations;
 
 import model.Image;
 import model.ImageModel;

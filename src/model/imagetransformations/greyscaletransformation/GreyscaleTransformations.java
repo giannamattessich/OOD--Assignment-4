@@ -1,7 +1,7 @@
-package model.imagetransformations.greyscaletransformation;
+package model.ImageTransformations.greyscaletransformation;
 
 import model.Image;
-import model.imagetransformations.ImageProcessor;
+import model.ImageTransformations.ImageProcessor;
 
 /**
  * Represents the interface for color transformation operations. Extends the model-representing

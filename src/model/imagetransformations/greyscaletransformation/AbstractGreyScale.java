@@ -1,8 +1,8 @@
-package model.imagetransformations.greyscaletransformation;
+package model.ImageTransformations.greyscaletransformation;
 
 import model.Image;
 import model.ImageModel;
-import model.imagetransformations.ImageProcessor;
+import model.ImageTransformations.ImageProcessor;
 
 /**
  * Abstract class to represent the different greyscale transformations.

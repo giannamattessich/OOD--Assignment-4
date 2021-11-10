@@ -1,4 +1,4 @@
-package model.imagetransformations.greyscaletransformation;
+package model.ImageTransformations.greyscaletransformation;
 
 /**
  * Class to represent a transformation on an image in which the red-component

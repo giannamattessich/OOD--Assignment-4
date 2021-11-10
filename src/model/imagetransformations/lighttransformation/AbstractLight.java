@@ -1,9 +1,9 @@
-package model.imagetransformations.lighttransformation;
+package model.ImageTransformations.lighttransformation;
 
 import model.Image;
 import model.ImageModel;
 import model.Pixel;
-import model.imagetransformations.ImageProcessor;
+import model.ImageTransformations.ImageProcessor;
 
 /**
  * Abstract class to represent the different lighting transformations.

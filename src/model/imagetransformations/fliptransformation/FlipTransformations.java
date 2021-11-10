@@ -1,7 +1,7 @@
-package model.imagetransformations.fliptransformation;
+package model.ImageTransformations.fliptransformation;
 
 import model.Image;
-import model.imagetransformations.ImageProcessor;
+import model.ImageTransformations.ImageProcessor;
 
 /**
  * Represents the interface for flipping transformation operations. Extends the model-representing

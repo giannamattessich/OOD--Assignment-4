@@ -1,4 +1,4 @@
-package model.imagetransformations.colortransformations;
+package model.ImageTransformations.colortransformations;
 
 /**
  * Class to represent a "sepia" color transformation.

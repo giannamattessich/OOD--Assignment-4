@@ -1,4 +1,4 @@
-package model.imagetransformations.lighttransformation;
+package model.ImageTransformations.lighttransformation;
 
 /**
  * Class to represent a darkening image transformation.

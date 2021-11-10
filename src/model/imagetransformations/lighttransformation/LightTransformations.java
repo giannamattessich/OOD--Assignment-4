@@ -1,7 +1,7 @@
-package model.imagetransformations.lighttransformation;
+package model.ImageTransformations.lighttransformation;
 
 import model.Image;
-import model.imagetransformations.ImageProcessor;
+import model.ImageTransformations.ImageProcessor;
 
 /**
  * Represents the interface for light transformation operations. Extends the model-representing

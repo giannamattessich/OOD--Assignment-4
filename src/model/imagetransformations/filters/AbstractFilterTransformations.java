@@ -1,4 +1,4 @@
-package model.imagetransformations.filters;
+package model.ImageTransformations.filters;
 
 import java.util.ArrayList;
 

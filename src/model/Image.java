@@ -1,6 +1,6 @@
 package model;
 
-import model.imagetransformations.ImageProcessor;
+import model.ImageTransformations.ImageProcessor;
 
 /**
  * Interface that represents an Image Object. Upon construction of an Image

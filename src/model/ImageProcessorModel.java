@@ -1,6 +1,6 @@
 package model;
 
-import model.imagetransformations.ImageProcessor;
+import model.ImageTransformations.ImageProcessor;
 
 /**
  * Represents the functionalities of this ImageProcessor model.

@@ -1,9 +1,9 @@
-package model.imagetransformations.fliptransformation;
+package model.ImageTransformations.fliptransformation;
 
 import model.Image;
 import model.ImageModel;
-import model.imagetransformations.ImageProcessor;
 import model.Pixel;
+import model.ImageTransformations.ImageProcessor;
 
 /**
  * Abstract class to represent the different flipping transformations.
