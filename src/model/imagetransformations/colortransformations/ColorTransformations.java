@@ -1,7 +1,7 @@
-package model.ImageTransformations.colortransformations;
+package model.imagetransformations.colortransformations;
 
 import model.Image;
-import model.ImageTransformations.ImageProcessor;
+import model.imagetransformations.ImageProcessor;
 
 /**
  * Interface to represent color transformation operations.

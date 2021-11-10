@@ -3,7 +3,7 @@ package model;
 import java.util.Arrays;
 import java.util.Objects;
 
-import model.ImageTransformations.ImageProcessor;
+import model.imagetransformations.ImageProcessor;
 
 /**
  * Class to implement image interface. Provides operations that operate on pixels

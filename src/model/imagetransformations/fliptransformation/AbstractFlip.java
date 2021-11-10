@@ -1,9 +1,9 @@
-package model.ImageTransformations.fliptransformation;
+package model.imagetransformations.fliptransformation;
 
 import model.Image;
 import model.ImageModel;
 import model.Pixel;
-import model.ImageTransformations.ImageProcessor;
+import model.imagetransformations.ImageProcessor;
 
 /**
  * Abstract class to represent the different flipping transformations.
@@ -32,7 +32,7 @@ public abstract class AbstractFlip implements FlipTransformations {
     int givenWidth = orgImage.getWidth();
     flipTypes type = this.type;
     if (type == flipTypes.vertical) {
-      for (int i = 0; i < givenHeight/2; i++) {
+      for (int i = 0; i < givenHeight / 2; i++) {
         for (int j = 0; j < givenWidth; j++) {
           Image result = new ImageModel(orgImage.getImagePixels());
           Pixel temp = result.getPixelAt(i, j);
@@ -48,7 +48,7 @@ public abstract class AbstractFlip implements FlipTransformations {
       }
     } else if (type == flipTypes.horizontal) {
       for (int i = 0; i < givenHeight; i++) {
-        for (int j = 0; j < givenWidth/2; j++) {
+        for (int j = 0; j < givenWidth / 2; j++) {
           Image result1 = new ImageModel(orgImage.getImagePixels());
           Pixel temp = result1.getPixelAt(i, j);
           int red = result1.getPixelAt(i, (givenWidth - j - 1)).getRed();

@@ -1,9 +1,9 @@
-package model.ImageTransformations.lighttransformation;
+package model.imagetransformations.lighttransformation;
 
 import model.Image;
 import model.ImageModel;
 import model.Pixel;
-import model.ImageTransformations.ImageProcessor;
+import model.imagetransformations.ImageProcessor;
 
 /**
  * Abstract class to represent the different lighting transformations.
@@ -15,7 +15,7 @@ public abstract class AbstractLight implements LightTransformations {
   protected int increment;
   protected lightTypes type;
 
-  enum lightTypes {brighten, darken}
+  enum lightTypes { brighten, darken }
 
   /**
    * Abstract constructor for a light transformation.

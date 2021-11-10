@@ -1,7 +1,7 @@
-package model.ImageTransformations.filters;
+package model.imagetransformations.filters;
 
 import model.Image;
-import model.ImageTransformations.ImageProcessor;
+import model.imagetransformations.ImageProcessor;
 
 /**
  * Interface to represent filtering operations.

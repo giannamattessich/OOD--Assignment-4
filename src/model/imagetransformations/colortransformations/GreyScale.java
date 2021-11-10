@@ -1,4 +1,4 @@
-package model.ImageTransformations.colortransformations;
+package model.imagetransformations.colortransformations;
 
 /**
  * Represents a greyscale color transformation.

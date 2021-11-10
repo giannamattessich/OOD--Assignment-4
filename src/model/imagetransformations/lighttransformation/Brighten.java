@@ -1,4 +1,4 @@
-package model.ImageTransformations.lighttransformation;
+package model.imagetransformations.lighttransformation;
 
 /**
  * Class to represent a brightening image transformation.

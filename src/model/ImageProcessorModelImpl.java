@@ -2,7 +2,7 @@ package model;
 
 import java.util.HashMap;
 
-import model.ImageTransformations.ImageProcessor;
+import model.imagetransformations.ImageProcessor;
 
 /**
  * Implementation of ImageProcessorModel. Model is constructed image

@@ -1,4 +1,4 @@
-package model.ImageTransformations;
+package model.imagetransformations;
 
 import model.Image;
 

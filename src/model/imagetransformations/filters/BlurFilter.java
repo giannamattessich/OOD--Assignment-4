@@ -1,4 +1,4 @@
-package model.ImageTransformations.filters;
+package model.imagetransformations.filters;
 
 /**
  * Class to represent blur filter on an image.

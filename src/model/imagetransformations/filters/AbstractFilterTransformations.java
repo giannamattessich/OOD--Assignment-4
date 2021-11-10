@@ -1,4 +1,4 @@
-package model.ImageTransformations.filters;
+package model.imagetransformations.filters;
 
 import java.util.ArrayList;
 
@@ -57,8 +57,7 @@ public abstract class AbstractFilterTransformations implements FilterTransformat
    * @param row row of pixel at center of kernel.
    * @param col column of pixel at center of kernel.
    * @param img image for filter to be applied to.
-   * @return matrix representing pixels that are taken into account when finding the RGB
-   * value of a filtered pixel.
+   * @return matrix representing pixels that are taken into account for rgb.
    */
   protected ArrayList<ArrayList<Pixel>> multiplyKernel(int row, int col, Image img) {
     int kernMid = getKernelHeight() / 2;
@@ -91,12 +90,9 @@ public abstract class AbstractFilterTransformations implements FilterTransformat
     int newBlue = 0;
     for (int i = 0; i < kernel.length; i++) {
       for (int j = 0; j < kernel[0].length; j++) {
-        newRed += ((multiplyKernel(row, col, img).get(i).get(j).getRed())
-                * (getKernelAt(i, j)));
-        newGreen += ((multiplyKernel(row, col, img).get(i).get(j).getGreen())
-                * (getKernelAt(i, j)));
-        newBlue += ((multiplyKernel(row, col, img).get(i).get(j).getBlue())
-                * (getKernelAt(i, j)));
+        newRed += ((multiplyKernel(row, col, img).get(i).get(j).getRed()) * (getKernelAt(i, j)));
+        newGreen += ((multiplyKernel(row, col, img).get(i).get(j).getGreen()) * (getKernelAt(i, j)));
+        newBlue += ((multiplyKernel(row, col, img).get(i).get(j).getBlue()) * (getKernelAt(i, j)));
 
         newRed = Math.min(255, newRed);
         newGreen = Math.min(255, newGreen);
@@ -105,7 +101,6 @@ public abstract class AbstractFilterTransformations implements FilterTransformat
     }
     img.setPixelAt(row, col, newRed, newGreen, newBlue);
   }
-
 
   @Override
   public Image process(Image orgImg) {

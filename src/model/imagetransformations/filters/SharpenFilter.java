@@ -1,4 +1,4 @@
-package model.ImageTransformations.filters;
+package model.imagetransformations.filters;
 
 /**
  * Class to represent sharpen filter.
